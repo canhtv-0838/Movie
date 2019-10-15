@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.canh.movie"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode appVersionCode.toInteger()
+        versionName appVersionName.toString()
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_KEY", "\"${API_KEY}\""
+        buildConfigField "String", "YOUTUBE_API_KEY", "\"${YOUTUBE_API_KEY}\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.core:core-ktx:$versions.androidx"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+
+    //Koin
+    implementation "org.koin:koin-android:$versions.koin"
+    // or Koin for Lifecycle scoping
+    implementation "org.koin:koin-android-scope:$versions.koin"
+    // or Koin for Android Architecture ViewModel
+    implementation "org.koin:koin-android-viewmodel:$versions.koin"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test:runner:$versions.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+}
