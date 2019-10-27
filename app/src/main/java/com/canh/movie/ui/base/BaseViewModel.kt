@@ -14,6 +14,8 @@ import kotlin.coroutines.CoroutineContext
 
 abstract class BaseViewModel : ViewModel(), CoroutineScope, KoinComponent, Observable {
 
+    val messageNotification = MutableLiveData<String>()
+
     private val callbacks: PropertyChangeRegistry = get(named(KoinNames.PROPERTY_CHANGE_REGISTRY))
 
     override val coroutineContext: CoroutineContext = Dispatchers.Main
@@ -28,5 +30,5 @@ abstract class BaseViewModel : ViewModel(), CoroutineScope, KoinComponent, Obser
 
     fun notifyPropertyChanged(fieldId: Int) = callbacks.notifyCallbacks(this, fieldId, null)
 
-    abstract fun create()
+    abstract fun onCreate()
 }

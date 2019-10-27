@@ -9,17 +9,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.canh.movie.BR
 
-abstract class BaseFragment <VB : ViewDataBinding, VM: BaseViewModel> : Fragment(), LifecycleOwner {
+abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment(), LifecycleOwner {
     protected lateinit var viewDataBinding: VB
-    protected abstract val viewModel : VM
+    protected abstract val viewModel: VM
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater,getLayoutResource(),container,false) as VB
+        viewDataBinding =
+            DataBindingUtil.inflate(inflater, getLayoutResource(), container, false) as VB
         return viewDataBinding.root
     }
 
@@ -27,6 +29,7 @@ abstract class BaseFragment <VB : ViewDataBinding, VM: BaseViewModel> : Fragment
         super.onViewCreated(view, savedInstanceState)
         initComponents()
         setBindingVariables()
+        initData()
         observeData()
     }
 
@@ -34,6 +37,8 @@ abstract class BaseFragment <VB : ViewDataBinding, VM: BaseViewModel> : Fragment
     abstract fun getLayoutResource(): Int
 
     open fun setBindingVariables() {
+        viewDataBinding.setVariable(BR.viewModel, viewModel)
+        viewDataBinding.lifecycleOwner = this
     }
 
     protected open fun observeData() {
@@ -43,7 +48,7 @@ abstract class BaseFragment <VB : ViewDataBinding, VM: BaseViewModel> : Fragment
     protected abstract fun initComponents()
 
     protected open fun initData() {
-        viewModel.create()
+        viewModel.onCreate()
     }
 
 }

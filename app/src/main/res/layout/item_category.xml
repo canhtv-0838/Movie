@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="home"
+            type="com.canh.movie.ui.main.home.HomeFragment" />
+
+        <variable
+            name="resources"
+            type="com.canh.movie.utils.Resources" />
+
+        <variable
+            name="item"
+            type="com.canh.movie.data.model.pair.CategoryPair" />
+
+        <variable
+            name="listener"
+            type="com.canh.movie.ui.base.BaseAdapterItemClickListener" />
+
+        <variable
+            name="categoryListener"
+            type="com.canh.movie.ui.main.home.category.CategoryListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textCategory"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@{item.categoryName}"
+            android:textColor="@color/color_primary"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="Upcomming" />
+
+        <TextView
+            android:id="@+id/textMore"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:onClick="@{(view) -> categoryListener.onCategoryClick(item)}"
+            android:text="@string/title_more"
+            android:textColor="@color/color_primary"
+            app:layout_constraintBottom_toBottomOf="@+id/textCategory"
+            app:layout_constraintEnd_toStartOf="@id/imageArrowRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageArrowRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:onClick="@{(view) -> categoryListener.onCategoryClick(item)}"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:tint="@color/color_primary"
+            app:layout_constraintBottom_toBottomOf="@+id/textMore"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMovies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:orientation="horizontal"
+            app:bindItems="@{item.movieResponse.results}"
+            app:bindLayoutRes="@{resources.ITEM_MOVIE}"
+            app:bindListener="@{home.moviesListener}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textCategory"
+            app:layout_constraintTop_toBottomOf="@id/textCategory"
+            app:spanCount="2"
+            tool:listitem="@layout/item_movie" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

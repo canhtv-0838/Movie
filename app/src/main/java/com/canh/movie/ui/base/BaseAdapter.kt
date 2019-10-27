@@ -7,11 +7,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 
-class BaseAdapter<T> constructor(
-    private val layoutResource: Int,
-    private val listener: OnItemClickListener
-) : RecyclerView.Adapter<BaseAdapter.ViewHolder<T>>() {
+class BaseAdapter<T> constructor(private val layoutResource: Int) :
+    RecyclerView.Adapter<BaseAdapter.ViewHolder<T>>() {
 
+    private var listener: OnItemClickListener? = null
     private var items = emptyList<T>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<T> =
         ViewHolder(
@@ -37,14 +36,20 @@ class BaseAdapter<T> constructor(
         notifyDataSetChanged()
     }
 
+    fun setListener(onItemClickListener: OnItemClickListener){
+        listener = onItemClickListener
+    }
+
     class ViewHolder<T>(
         private val viewBinding: ViewDataBinding,
-        private val listener: OnItemClickListener
+        private val listener: OnItemClickListener?
     ) : RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bindData(item: T) {
-//            viewBinding.setVariable(BR.data, item)
-//            viewBinding.setVariable(BR.listener, listener)
+            viewBinding.setVariable(BR.item, item)
+            listener?.let {
+            viewBinding.setVariable(BR.listener, listener)
+            }
             viewBinding.executePendingBindings()
         }
     }

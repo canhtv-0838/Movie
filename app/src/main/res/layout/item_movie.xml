@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.canh.movie.data.model.Movie" />
+
+        <variable
+            name="listener"
+            type="com.canh.movie.ui.base.BaseAdapterItemClickListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{()->listener.onItemClick(item)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageMovie"
+                android:layout_width="@dimen/dp_128"
+                android:layout_height="@dimen/dp_176"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:bindImage="@{item.posterPath}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_bottom_gradient"
+                app:layout_constraintBottom_toBottomOf="@+id/imageMovie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageMovie" />
+
+            <ProgressBar
+                android:id="@+id/progressPopularity"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_margin="@dimen/dp_2"
+                android:background="@drawable/bg_custom_progress_hint"
+                android:max="100"
+                android:progressDrawable="@drawable/bg_custom_progress_actual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:progressValue="@{item.voteAverage}" />
+
+            <TextView
+                android:id="@+id/textPopularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(item.voteAverage)}"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/progressPopularity"
+                app:layout_constraintEnd_toEndOf="@id/progressPopularity"
+                app:layout_constraintStart_toStartOf="@id/progressPopularity"
+                app:layout_constraintTop_toTopOf="@id/progressPopularity" />
+
+            <TextView
+                android:id="@+id/textMovie"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_4"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="@{item.title}"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

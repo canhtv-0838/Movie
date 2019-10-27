@@ -6,10 +6,16 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.canh.movie.R
 import com.canh.movie.databinding.FragmentSplashBinding
 import com.canh.movie.ui.base.BaseFragment
+import com.canh.movie.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_splash.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-private const val TIME_DELAY = 3000L
+private const val TIME_DELAY = 30L // todo  initial value = 3000
+
 class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
 
     override fun getLayoutResource(): Int = R.layout.fragment_splash
@@ -64,6 +70,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
         })
         topLeftAnimationForward?.start()
         bottomRightAnimationForward?.start()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GlobalScope.launch(context = Dispatchers.Main) {
+            delay(TIME_DELAY)
+            startActivity(MainActivity.getIntent(activity!!))
+        }
     }
 
     companion object {

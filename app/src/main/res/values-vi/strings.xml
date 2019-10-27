@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movie</string>
+    <string name="title_more">Xem thêm</string>
+    <string name="title_now_playing">Đang phát</string>
+    <string name="title_popular">Phổ biến</string>
+    <string name="title_top_rate">Đánh giá cao</string>
+    <string name="title_up_coming">Sắp chiếu</string>
+</resources>

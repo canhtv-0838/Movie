@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Movie</string>
+    <string name="error_connect" translatable="false">Network not available</string>
+<!--    main_activity-->
+    <string name="title_search" translatable="false">Search</string>
+    <string name="title_dark_theme" translatable="false">Dark Theme</string>
+    <string name="title_filter" translatable="false">Filter</string>
+<!--    home_fragment-->
+    <string name="title_now_playing">Now playing</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_up_coming">Up coming</string>
+    <string name="title_top_rate">Top rate</string>
+    <string name="title_more">More</string>
+    <string name="title_about_me" translatable="false">About me</string>
+    <string name="title_favorite" translatable="false">Favorite</string>
+    <string name="title_version" translatable="false">Version: </string>
+    <string name="title_build_time" translatable="false">Build: </string>
+    <string name="title_trailer" translatable="false">Trailer</string>
+    <string name="title_casting" translatable="false">Cast</string>
+    <string name="title_producer" translatable="false">Producer</string>
 </resources>

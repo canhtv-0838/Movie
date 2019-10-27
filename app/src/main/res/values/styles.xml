@@ -22,5 +22,9 @@
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">@dimen/dp_8</item>
     </style>
+    
+    <style name="AppProgressBar" parent="AppTheme.DayNight">
+        <item name="colorAccent">@color/color_primary</item>
+    </style>
 
 </resources>

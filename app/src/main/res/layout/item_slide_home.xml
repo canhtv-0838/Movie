@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.canh.movie.data.model.Movie" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/homeImageSlide"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_200"
+            android:scaleType="centerCrop"
+            app:bindImageNotRoundCorners="@{item.posterPath}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_top_gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/homeTextTitle"
+            style="@android:style/TextAppearance.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:maxLines="2"
+            android:text="@{item.title}"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/homeImageSlide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/homeTextReleaseDate"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:bindDate="@{item.releaseDate}"
+            android:textColor="@color/color_white"
+            app:layout_constraintEnd_toEndOf="@+id/homeTextTitle"
+            app:layout_constraintStart_toStartOf="@id/homeTextTitle"
+            app:layout_constraintTop_toBottomOf="@id/homeTextTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
