@@ -1,8 +1,10 @@
 package com.canh.movie.utils
 
+import android.graphics.Color
 import android.os.Build
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,11 +13,14 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.canh.movie.R
+import com.canh.movie.data.model.CategoryName
 import com.canh.movie.data.model.pair.CategoryPair
 import com.canh.movie.ui.base.BaseAdapter
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.main.home.HomeFragment
 import com.canh.movie.ui.main.home.category.CategoryAdapter
+import jp.wasabeef.blurry.Blurry
+import kotlinx.android.synthetic.main.fragment_splash.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -100,13 +105,77 @@ object BindingUtils : BaseAdapter.OnItemClickListener {
         }
     }
 
+    @BindingAdapter("bindSmallImage")
+    @JvmStatic
+    fun bindSmallImageFromUrl(imageView: ImageView, imageUrl: String?) {
+        imageUrl?.let {
+            Glide.with(imageView)
+                .load(StringUtils.getSmallImage(it))
+                .thumbnail(Glide.with(imageView).load(R.drawable.gif_preloader))
+                .error(R.drawable.im_no_image)
+                .into(imageView)
+        }
+    }
+
+//    @BindingAdapter("blurImage")
+//    @JvmStatic
+//    fun setBlurImage(imageView: ImageView?) {
+//        imageView?.let {
+//            Blurry.with(imageView.context)
+//                .radius(10)
+//                .sampling(8)
+//                .color(Color.argb(66, 255, 255, 0))
+//                .async()
+//                .animate(500)
+//                .onto()
+//        }
+//    }
+
+    @BindingAdapter("bindRating")
+    @JvmStatic
+    fun bindRating(rating: RatingBar, voteAverage: Double) {
+        if (voteAverage != 0.0) {
+            rating.rating = (voteAverage * (rating.numStars) / 10).toFloat()
+        }
+    }
+
+    @BindingAdapter("bindCategoryName")
+    @JvmStatic
+    fun bindCategoryName(textView: TextView, @CategoryName categoryName: String) {
+        when (categoryName) {
+            CategoryName.NOW_PLAYING -> textView.text =
+                textView.context.getString(R.string.title_now_playing)
+            CategoryName.POPULAR -> textView.text =
+                textView.context.getString(R.string.title_popular)
+            CategoryName.TOP_RATED -> textView.text =
+                textView.context.getString(R.string.title_top_rate)
+            CategoryName.UPCOMING -> textView.text =
+                textView.context.getString(R.string.title_upcoming)
+        }
+    }
+
+    @BindingAdapter("bindYouTubeThumbnail")
+    @JvmStatic
+    fun setYouTubeThumbnailViewForTrailer(
+        thumbnailView: ImageView,
+        trailerKey: String
+    ) {
+        Glide.with(thumbnailView)
+            .load(StringUtils.getThumbnail(trailerKey))
+            .thumbnail(Glide.with(thumbnailView).load(R.drawable.gif_preloader))
+            .error(R.drawable.im_no_image)
+            .into(thumbnailView)
+    }
+
     @BindingAdapter("bindDate")
     @JvmStatic
-    fun formatDate(textView: TextView, date: String) {
+    fun formatDate(textView: TextView, date: String?) {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd")
         val outputFormat = SimpleDateFormat("dd-MM-yyyy")
-        val date: Date = inputFormat.parse(date)
-        val outputFormatString = outputFormat.format(date)
-        textView.text = outputFormatString
+        date?.let {
+            val dateOuput: Date = inputFormat.parse(it)
+            val outputFormatString = outputFormat.format(dateOuput)
+            textView.text = outputFormatString
+        }
     }
 }

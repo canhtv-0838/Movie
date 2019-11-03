@@ -4,6 +4,8 @@ import android.os.Handler
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.canh.movie.R
+import com.canh.movie.data.model.CategoryName
+import com.canh.movie.data.model.CategoryQuery
 import com.canh.movie.data.model.Movie
 import com.canh.movie.data.model.pair.CategoryPair
 import com.canh.movie.databinding.FragmentHomeBinding
@@ -12,6 +14,8 @@ import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.base.BaseFragment
 import com.canh.movie.ui.main.home.category.CategoryListener
 import com.canh.movie.ui.main.home.slide.SlideAdapter
+import com.canh.movie.ui.main.movies.MoviesFragment
+import com.canh.movie.ui.movie_detail.MovieDetailActivity
 import com.canh.movie.utils.log
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -57,16 +61,53 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     }
 
     override fun onSlideClick(movies: List<Movie>) {
-        log("${movies[currentSlidePosition].title}")
-        //todo
+        startActivity(
+            MovieDetailActivity.getIntent(
+                activity!!,
+                movies[currentSlidePosition].id,
+                movies[currentSlidePosition].title
+            )
+        )
     }
 
     override fun onItemClick(item: Movie) {
-        log("${item.title}")
+        startActivity(
+            MovieDetailActivity.getIntent(
+                activity!!,
+                item.id,
+                item.title
+            )
+        )
     }
 
     override fun onCategoryClick(item: CategoryPair) {
-        log("meow")
+        when (item.categoryName) {
+            CategoryName.NOW_PLAYING -> addFragment(
+                MoviesFragment.newInstance(
+                    CategoryQuery.NOW_PLAYING,
+                    item.categoryName
+                ), true
+            )
+            CategoryName.POPULAR -> addFragment(
+                MoviesFragment.newInstance(
+                    CategoryQuery.POPULAR,
+                    item.categoryName
+                ), true
+            )
+
+            CategoryName.UPCOMING -> addFragment(
+                MoviesFragment.newInstance(
+                    CategoryQuery.UPCOMING,
+                    item.categoryName
+                ), true
+            )
+            CategoryName.TOP_RATED -> addFragment(
+                MoviesFragment.newInstance(
+                    CategoryQuery.TOP_RATED,
+                    item.categoryName
+                ), true
+            )
+        }
     }
 
     override fun onPageScrollStateChanged(state: Int) {
@@ -105,6 +146,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     }
 
     companion object : BaseAdapter.OnItemClickListener {
+
         fun newInstance() = HomeFragment()
 
         @JvmStatic

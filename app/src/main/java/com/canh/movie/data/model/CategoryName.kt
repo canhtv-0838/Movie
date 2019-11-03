@@ -13,9 +13,9 @@ import java.lang.annotation.RetentionPolicy
 )
     annotation class CategoryName {
     companion object {
-        const val TITLE_POPULAR = "Popular"
-        const val TITLE_NOW_PLAYING = "Now Playing"
-        const val TITLE_UPCOMING = "Upcomming"
-        const val TITLE_TOP_RATED = "Top Rate"
+        const val POPULAR = "Popular"
+        const val NOW_PLAYING = "Now playing"
+        const val UPCOMING = "Upcoming"
+        const val TOP_RATED = "Top rate"
     }
 }

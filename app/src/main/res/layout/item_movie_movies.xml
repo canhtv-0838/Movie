@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.canh.movie.data.model.Movie" />
+
+        <variable
+            name="listener"
+            type="com.canh.movie.ui.base.BaseAdapterItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:background="@color/color_white">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPoster"
+            android:layout_width="@dimen/dp_128"
+            android:layout_height="@dimen/dp_160"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{()->listener.onItemClick(item)}"
+            app:cardCornerRadius="@dimen/dp_8"
+            app:cardElevation="@dimen/dp_4"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imagePoster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:bindSmallImage="@{item.posterPath}" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_150"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{()->listener.onItemClick(item)}"
+            app:cardCornerRadius="@dimen/dp_8"
+            app:cardElevation="@dimen/dp_2"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+            app:layout_constraintTop_toTopOf="@id/guidelineHorizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textTitle"
+                    style="@android:style/TextAppearance.DeviceDefault.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{item.title}"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guidelineVerticalTwo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/color_yellow"
+                    android:progressTint="@color/color_yellow"
+                    android:secondaryProgressTint="@color/color_yellow"
+                    app:bindRating="@{item.voteAverage}"
+                    app:layout_constraintStart_toEndOf="@id/guidelineVerticalTwo"
+                    app:layout_constraintTop_toBottomOf="@id/textTitle" />
+
+                <TextView
+                    android:id="@+id/textReleaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    app:bindDate="@{item.releaseDate}"
+                    app:layout_constraintStart_toStartOf="@id/guidelineVerticalTwo"
+                    app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+
+                <TextView
+                    android:id="@+id/textOverview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:text="@{item.overview}"
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guidelineVerticalTwo"
+                    app:layout_constraintTop_toBottomOf="@+id/textReleaseDate" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidelineVerticalTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/dp_110" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

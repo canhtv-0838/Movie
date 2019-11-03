@@ -29,6 +29,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -64,6 +68,13 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
+
+    //Youtube
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+
+    //Blur
+    implementation "jp.wasabeef:blurry:$versions.blurry"
+
 
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "androidx.test:runner:$versions.runner"

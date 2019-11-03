@@ -6,10 +6,12 @@ import com.canh.movie.R
 import com.canh.movie.databinding.ActivityLandingBinding
 import com.canh.movie.ui.base.BaseActivity
 import com.canh.movie.ui.landing.splash.SplashFragment
-import com.canh.movie.utils.replaceFragment
+import com.canh.movie.utils.log
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LandingActivity : BaseActivity<ActivityLandingBinding, LandingViewModel>() {
+    override fun getContainerId(): Int = R.id.landingContainerId
+
     override val viewModel: LandingViewModel by viewModel()
 
     override fun getLayoutResource(): Int = R.layout.activity_landing
@@ -28,6 +30,7 @@ class LandingActivity : BaseActivity<ActivityLandingBinding, LandingViewModel>()
     }
 
     private fun startFrag(fragment: Fragment) {
-        replaceFragment(R.id.landingContainerId, fragment, false)
+        replaceFragment(fragment, false)
     }
+
 }

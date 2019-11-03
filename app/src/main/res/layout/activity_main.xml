@@ -61,7 +61,7 @@
             android:layout_width="@dimen/dp_250"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@color/color_on_primary"
+            android:background="?attr/colorSurface"
             android:clipToPadding="false"
             android:elevation="@dimen/dp_16"
             android:orientation="vertical"

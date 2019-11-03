@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit
 object RetrofitBuilder {
 
     private const val QUERY_PARAMETER_API_KEY = "api_key"
-    private const val READ_TIMEOUT = 5L
-    private const val WRITE_TIMEOUT = 5L
-    private const val CONNECT_TIMEOUT = 5L
+    private const val READ_TIMEOUT = 50L
+    private const val WRITE_TIMEOUT = 50L
+    private const val CONNECT_TIMEOUT = 50L
     private const val CACHE_SIZE = (10 * 1024 * 1024).toLong()
     private const val TIME_CACHE_ONLINE = "public, max-age = 60"// 1 minute
     private const val TIME_CACHE_OFFLINE = "public, only-if-cached, max-stale = 86400"//1 day

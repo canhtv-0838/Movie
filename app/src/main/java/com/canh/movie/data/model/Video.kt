@@ -1,12 +1,15 @@
 package com.canh.movie.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Video(
     @SerializedName("id")
     @Expose
-    val id: Int,
+    val id: String,
     @SerializedName("iso_639_1")
     @Expose
     val iso_639_1: String,
@@ -28,4 +31,4 @@ data class Video(
     @SerializedName("type")
     @Expose
     val type: String
-)
+) : Parcelable

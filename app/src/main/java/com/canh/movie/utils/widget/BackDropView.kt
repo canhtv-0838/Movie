@@ -31,7 +31,7 @@ class BackDropView @JvmOverloads internal constructor(
         animatorSet.end()
         animatorSet.cancel()
         updateIcon(view)
-        val translateY = height - height/2
+        val translateY = height - (3*height)/4
         val animator = ObjectAnimator.ofFloat(sheet, "translationY", (if (backdropShown) translateY else 0).toFloat())
         animator.duration = 500
         if (interpolator != null) {

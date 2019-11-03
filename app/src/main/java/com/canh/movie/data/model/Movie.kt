@@ -1,8 +1,12 @@
 package com.canh.movie.data.model
 
+import android.os.Parcelable
+import com.canh.movie.data.model.result.VideoResult
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     @SerializedName("id")
     @Expose
@@ -66,6 +70,11 @@ data class Movie(
     val tagLine: String? = null,
     @SerializedName("status")
     @Expose
-    val status: String
-
-)
+    val status: String,
+    @SerializedName("videos")
+    @Expose
+    val videoResult: VideoResult,
+    @SerializedName("credits")
+    @Expose
+    val credits: Credit
+) : Parcelable

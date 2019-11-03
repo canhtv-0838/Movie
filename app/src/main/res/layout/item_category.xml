@@ -37,9 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:layout_marginTop="@dimen/dp_16"
-            android:text="@{item.categoryName}"
             android:textColor="@color/color_primary"
             android:textStyle="bold"
+            app:bindCategoryName="@{item.categoryName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tool:text="Upcomming" />
@@ -75,13 +75,13 @@
             android:layout_marginTop="@dimen/dp_8"
             android:orientation="horizontal"
             app:bindItems="@{item.movieResponse.results}"
-            app:bindLayoutRes="@{resources.ITEM_MOVIE}"
+            app:bindLayoutRes="@{resources.ITEM_MOVIE_HOME}"
             app:bindListener="@{home.moviesListener}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textCategory"
             app:layout_constraintTop_toBottomOf="@id/textCategory"
             app:spanCount="2"
-            tool:listitem="@layout/item_movie" />
+            tool:listitem="@layout/item_movie_home" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

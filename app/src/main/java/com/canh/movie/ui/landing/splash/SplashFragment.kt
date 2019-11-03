@@ -1,6 +1,8 @@
 package com.canh.movie.ui.landing.splash
 
 import android.graphics.drawable.Drawable
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.canh.movie.R
@@ -14,10 +16,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-private const val TIME_DELAY = 30L // todo  initial value = 3000
+private const val TIME_DELAY = 3000L
 
 class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
-
+    val isAllowTransition = MutableLiveData<Boolean>().apply { value = false }
     override fun getLayoutResource(): Int = R.layout.fragment_splash
 
     override val viewModel: SplashViewModel by viewModel()
@@ -72,11 +74,21 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
         bottomRightAnimationForward?.start()
     }
 
+    override fun observeData() {
+        super.observeData()
+        isAllowTransition.observe(viewLifecycleOwner, Observer {
+          if (it){
+              startActivity(MainActivity.getIntent(activity!!))
+              activity!!.finish()
+          }
+        })
+    }
+
     override fun onResume() {
         super.onResume()
         GlobalScope.launch(context = Dispatchers.Main) {
             delay(TIME_DELAY)
-            startActivity(MainActivity.getIntent(activity!!))
+            isAllowTransition.value = true
         }
     }
 

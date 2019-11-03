@@ -8,7 +8,7 @@
 <!--    home_fragment-->
     <string name="title_now_playing">Now playing</string>
     <string name="title_popular">Popular</string>
-    <string name="title_up_coming">Up coming</string>
+    <string name="title_upcoming">Upcoming</string>
     <string name="title_top_rate">Top rate</string>
     <string name="title_more">More</string>
     <string name="title_about_me" translatable="false">About me</string>
@@ -18,4 +18,10 @@
     <string name="title_trailer" translatable="false">Trailer</string>
     <string name="title_casting" translatable="false">Cast</string>
     <string name="title_producer" translatable="false">Producer</string>
+
+<!--    movie_detail-->
+    <string name="title_movie_play" translatable="false">Watch Movie</string>
+    <string name="movie_detail_overview_label" translatable="false">Overview</string>
+    <string name="movie_detail_runtime_unit" translatable="false">minutes</string>
+    <string name="movie_detail_text_in" translatable="false">In</string>
 </resources>

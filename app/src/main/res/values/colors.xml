@@ -9,4 +9,7 @@
     <color name="color_yellow">#FF9800</color>
     <color name="color_white">#B3FFFFFF</color>
     <color name="color_black_32">#32000000</color>
+
+<!--    https://www.materialui.co/colors-->
+    <color name="color_grey_100">#F5F5F5</color>
 </resources>

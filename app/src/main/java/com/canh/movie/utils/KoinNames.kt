@@ -16,4 +16,6 @@ object KoinNames {
     const val MOVIE_REMOTE_DATA_SOURCE = "name_movie_remote_data_source"
 
     const val MOVIE_REPOSITORY = "name_movie_repository"
+
+    const val SHARED_PREFERENCES = "name_shared_preferences"
 }

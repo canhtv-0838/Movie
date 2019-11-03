@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.canh.movie.ui.movie_detail.information.InformationViewModel" />
+    </data>
+
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <TextView
+              android:id="@+id/movieDetailTextTitle"
+              style="@style/TextAppearance.MaterialComponents.Headline5"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/dp_16"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="16dp"
+              android:maxLines="2"
+              android:text="@{viewModel.movie.title}"
+              android:textColor="@color/color_yellow"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <RatingBar
+              android:id="@+id/movieDetailRatingBar"
+              style="?attr/ratingBarStyleSmall"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:numStars="5"
+              app:bindRating="@{viewModel.movie.voteAverage}"
+              android:progressBackgroundTint="@color/color_yellow"
+              android:progressTint="@color/color_yellow"
+              android:secondaryProgressTint="@color/color_yellow"
+              app:layout_constraintEnd_toEndOf="@+id/movieDetailTextTitle"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/movieDetailTextTitle"
+              app:layout_constraintTop_toBottomOf="@+id/movieDetailTextTitle" />
+
+          <TextView
+              android:id="@+id/movieDetailTextRuntime"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/dp_8"
+              android:textColor="?android:attr/textColorPrimary"
+              android:text="@{String.valueOf(viewModel.movie.runtime)}"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/movieDetailRatingBar"
+              app:layout_constraintTop_toBottomOf="@+id/movieDetailRatingBar" />
+
+          <TextView
+              android:id="@+id/movieDetailTextRuntimeUnit"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/movie_detail_runtime_unit"
+              android:textColor="?android:attr/textColorPrimary"
+              android:layout_marginLeft="@dimen/dp_4"
+              app:layout_constraintBottom_toBottomOf="@+id/movieDetailTextRuntime"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toEndOf="@+id/movieDetailTextRuntime"
+              app:layout_constraintTop_toTopOf="@+id/movieDetailRatingBar"
+              app:layout_constraintVertical_bias="1.0" />
+
+          <TextView
+              android:id="@+id/movieDetailTextReleaseDate"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              style="@android:style/TextAppearance.DeviceDefault.Medium"
+              android:textColor="?android:attr/textColorPrimary"
+              app:bindDate="@{viewModel.movie.releaseDate}"
+              app:layout_constraintEnd_toEndOf="@id/movieDetailTextTitle"
+              app:layout_constraintStart_toStartOf="@+id/movieDetailTextTitle"
+              app:layout_constraintTop_toBottomOf="@+id/movieDetailTextRuntime" />
+
+          <TextView
+              android:id="@+id/inforTextOverviewLabel"
+              style="@style/TextAppearance.MaterialComponents.Headline5"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/dp_16"
+              android:text="@string/movie_detail_overview_label"
+              android:textColor="@color/color_yellow"
+              android:textStyle="bold"
+              app:layout_constraintBottom_toTopOf="@+id/inforTextOverview"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/movieDetailTextReleaseDate"
+              app:layout_constraintHorizontal_bias="0.625"
+              app:layout_constraintStart_toStartOf="parent" />
+
+          <TextView
+              android:id="@+id/inforTextOverview"
+              style="@android:style/TextAppearance.DeviceDefault.Medium"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/dp_16"
+              android:layout_marginRight="@dimen/dp_16"
+              android:scrollbarStyle="outsideOverlay"
+              android:scrollbars="vertical"
+              android:textColor="?android:attr/textColorPrimary"
+              android:text="@{viewModel.movie.overview}"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/inforTextOverviewLabel" />
+
+          <View
+              android:id="@+id/moviesDetailViewLoading"
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:background="@android:color/white"
+              android:fitsSystemWindows="true"
+              android:visibility="@{viewModel.isAllLoadedObservable ? View.GONE : View.VISIBLE }"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/movieDetailTextReleaseDate"
+              app:layout_constraintVertical_bias="0.0"
+              tools:visibility="invisible" />
+
+          <ProgressBar
+              android:id="@+id/moviesDetailProgressBar"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:theme="@style/AppProgressBar"
+              android:visibility="@{viewModel.isAllLoadedObservable ? View.GONE : View.VISIBLE }"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.core.widget.NestedScrollView>
+
+</layout>

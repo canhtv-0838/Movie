@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.canh.movie.R
 import com.canh.movie.coroutines.getData
+import com.canh.movie.data.model.CategoryName
 import com.canh.movie.data.model.CategoryQuery
 import com.canh.movie.data.model.MediaType
 import com.canh.movie.data.model.TimeWindow
@@ -44,10 +44,10 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
     private fun isAllLoaded() =
         isTrendingLoadedObservable.get() && isMovieByCategoryLoadedObservable.get()
 
-    private fun getCategoryByType(@CategoryQuery categoryKey: String) = launch(Dispatchers.IO) {
-        movieRepository.getMovieByCategory(categoryKey, language, pageLoading).getData(
+    private fun getCategoryByType(@CategoryQuery categoryQuery: String) = launch(Dispatchers.IO) {
+        movieRepository.getMoviesByCategory(categoryQuery, language, pageLoading).getData(
             onSuccess = {
-                postValueMovieByCategory(categoryKey, it)
+                postValueMovieByCategory(categoryQuery, it)
                 _categories.postValue(_categoryPairs)
 
                 isMovieByCategoryLoadedObservable.set(true)
@@ -80,7 +80,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
             CategoryQuery.NOW_PLAYING -> {
                 _categoryPairs.add(
                     CategoryPair(
-                        context.getString(R.string.title_now_playing),
+                        CategoryName.NOW_PLAYING,
                         movieResponse
                     )
                 )
@@ -88,7 +88,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
             CategoryQuery.POPULAR -> {
                 _categoryPairs.add(
                     CategoryPair(
-                        context.getString(R.string.title_popular),
+                        CategoryName.POPULAR,
                         movieResponse
                     )
                 )
@@ -96,7 +96,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
             CategoryQuery.TOP_RATED -> {
                 _categoryPairs.add(
                     CategoryPair(
-                        context.getString(R.string.title_top_rate),
+                        CategoryName.TOP_RATED,
                         movieResponse
                     )
                 )
@@ -104,7 +104,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
             CategoryQuery.UPCOMING -> {
                 _categoryPairs.add(
                     CategoryPair(
-                        context.getString(R.string.title_up_coming),
+                        CategoryName.UPCOMING,
                         movieResponse
                     )
                 )
