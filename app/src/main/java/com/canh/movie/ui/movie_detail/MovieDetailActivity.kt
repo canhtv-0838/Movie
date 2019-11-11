@@ -25,7 +25,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
     MovieTrailerListener {
 
     private lateinit var youtubeFragment: YoutubeFragment
-    private lateinit var pageAdapter: MovieDetailPagerAdapter
+    private lateinit var pagerAdapter: MovieDetailPagerAdapter
 
     override val viewModel: MovieDetailViewModel by viewModel()
 
@@ -104,12 +104,12 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
     }
 
     private fun initPagerAdapter(movie: Movie) {
-        pageAdapter = MovieDetailPagerAdapter(supportFragmentManager)
-        pageAdapter.addFragments(InformationFragment.newInstance(movie))
-        pageAdapter.addFragments(TrailerFragment.newInstance(movie.videoResult))
-        pageAdapter.addFragments(CastFragment.newInstance(movie.credits.casts))
-        pageAdapter.addFragments(ProducerFragment.newInstance(movie.productionCompanies))
-        movieDetailViewPager?.adapter = pageAdapter
+        pagerAdapter = MovieDetailPagerAdapter(supportFragmentManager)
+        pagerAdapter.addFragments(InformationFragment.newInstance(movie))
+        pagerAdapter.addFragments(TrailerFragment.newInstance(movie.videoResult))
+        pagerAdapter.addFragments(CastFragment.newInstance(movie.credits.casts))
+        pagerAdapter.addFragments(ProducerFragment.newInstance(movie.productionCompanies))
+        movieDetailViewPager?.adapter = pagerAdapter
         movieDetailTabLayout?.setupWithViewPager(movieDetailViewPager, true)
     }
 

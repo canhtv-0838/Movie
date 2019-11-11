@@ -32,6 +32,7 @@ class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewMo
             },
             onFailed = {
                 messageNotification.postValue(it.message.toString())
+                isAllLoadedObservable.set(true)
             }
         )
     }
@@ -44,6 +45,7 @@ class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewMo
             },
             onFailed = {
                 messageNotification.postValue(it.message.toString())
+                isAllLoadedObservable.set(true)
             })
     }
 }

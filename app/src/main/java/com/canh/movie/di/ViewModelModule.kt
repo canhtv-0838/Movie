@@ -1,16 +1,19 @@
 package com.canh.movie.di
 
+import com.canh.movie.ui.cast_detail.CastDetailViewModel
+import com.canh.movie.ui.cast_detail.information.CastInformationViewModel
+import com.canh.movie.ui.cast_detail.movies.CastMoviesViewModel
 import com.canh.movie.ui.landing.LandingViewModel
 import com.canh.movie.ui.landing.login.LoginViewModel
 import com.canh.movie.ui.landing.splash.SplashViewModel
 import com.canh.movie.ui.main.MainViewModel
 import com.canh.movie.ui.main.home.HomeViewModel
-import com.canh.movie.ui.movie_detail.MovieDetailViewModel
-import com.canh.movie.ui.movie_detail.trailer.TrailerViewModel
 import com.canh.movie.ui.main.movies.MoviesViewModel
+import com.canh.movie.ui.movie_detail.MovieDetailViewModel
 import com.canh.movie.ui.movie_detail.cast.CastViewModel
 import com.canh.movie.ui.movie_detail.information.InformationViewModel
 import com.canh.movie.ui.movie_detail.producer.ProducerViewModel
+import com.canh.movie.ui.movie_detail.trailer.TrailerViewModel
 import com.canh.movie.utils.KoinNames
 import com.canh.movie.utils.KoinNames.APP_CONTEXT
 import org.koin.android.viewmodel.dsl.viewModel
@@ -48,4 +51,14 @@ val viewModelModule = module {
     viewModel { CastViewModel() }
 
     viewModel { ProducerViewModel() }
+
+    viewModel {
+        CastDetailViewModel(get(named(KoinNames.MOVIE_REPOSITORY)))
+    }
+
+    viewModel { CastInformationViewModel() }
+
+    viewModel {
+        CastMoviesViewModel(get(named(KoinNames.MOVIE_REPOSITORY)))
+    }
 }

@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/homeTextTitle"
-            style="@android:style/TextAppearance.Large"
+            style="?android:textAppearanceLarge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_16"
@@ -50,7 +50,7 @@
 
         <TextView
             android:id="@+id/homeTextReleaseDate"
-            style="@android:style/TextAppearance.Medium"
+            style="?android:textAppearanceMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:bindDate="@{item.releaseDate}"

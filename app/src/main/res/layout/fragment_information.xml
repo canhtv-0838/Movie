@@ -83,7 +83,7 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="8dp"
-              style="@android:style/TextAppearance.DeviceDefault.Medium"
+              style="?android:textAppearanceMedium"
               android:textColor="?android:attr/textColorPrimary"
               app:bindDate="@{viewModel.movie.releaseDate}"
               app:layout_constraintEnd_toEndOf="@id/movieDetailTextTitle"
@@ -107,11 +107,12 @@
 
           <TextView
               android:id="@+id/inforTextOverview"
-              style="@android:style/TextAppearance.DeviceDefault.Medium"
+              style="?android:textAppearanceMedium"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginLeft="@dimen/dp_16"
               android:layout_marginRight="@dimen/dp_16"
+              android:layout_marginBottom="@dimen/dp_32"
               android:scrollbarStyle="outsideOverlay"
               android:scrollbars="vertical"
               android:textColor="?android:attr/textColorPrimary"

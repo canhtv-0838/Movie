@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
-    private val languageCode = Locale.getDefault().language
+    private val language = Locale.getDefault().language
 
     private val _genresResponse = MutableLiveData<GenresResponse>()
 
@@ -22,7 +22,7 @@ class MainViewModel(private val movieRepository: MovieRepository) : BaseViewMode
     }
 
     private fun getGenres() = launch(Dispatchers.IO) {
-        movieRepository.getGenres(languageCode).getData(
+        movieRepository.getGenres(language).getData(
             onSuccess = {
                 _genresResponse.postValue(GenresResponse(it.genres))
             },

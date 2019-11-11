@@ -55,6 +55,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
             },
             onFailed = {
                 messageNotification.postValue(it.message.toString())
+                isAllLoadedObservable.set(true)
             }
         )
     }
@@ -70,6 +71,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val co
                 },
                 onFailed = {
                     messageNotification.postValue(it.message.toString())
+                    isAllLoadedObservable.set(true)
                 }
             )
         }

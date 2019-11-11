@@ -1,10 +1,7 @@
 package com.canh.movie.data.source
 
 import com.canh.movie.coroutines.CoroutinesResult
-import com.canh.movie.data.model.CategoryQuery
-import com.canh.movie.data.model.MediaType
-import com.canh.movie.data.model.Movie
-import com.canh.movie.data.model.TimeWindow
+import com.canh.movie.data.model.*
 import com.canh.movie.data.model.response.GenresResponse
 import com.canh.movie.data.model.response.MovieResponse
 
@@ -15,7 +12,7 @@ interface MovieDataSource {
 
         suspend fun getMoviesByCategory(
             @CategoryQuery categoryKey: String,
-            languageCode: String,
+            language: String,
             page: Int
         ): CoroutinesResult<MovieResponse>
 
@@ -26,14 +23,26 @@ interface MovieDataSource {
 
         suspend fun getMoviesByGenres(
             genresId: Int,
-            languageCode: String,
+            language: String,
             page: Int
         ): CoroutinesResult<MovieResponse>
 
+        suspend fun getMoviesByCast(
+            castId: Int,
+            language: String,
+            page: Int
+        ): CoroutinesResult<MovieResponse>
+
+
         suspend fun getMovieDetail(
             movieId: Int,
-            languageCode: String,
+            language: String,
             append: String
         ): CoroutinesResult<Movie>
+
+        suspend fun getPerson(
+            personId: Int,
+            language: String
+        ): CoroutinesResult<People>
     }
 }

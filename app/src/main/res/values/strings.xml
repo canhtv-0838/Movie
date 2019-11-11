@@ -24,4 +24,16 @@
     <string name="movie_detail_overview_label" translatable="false">Overview</string>
     <string name="movie_detail_runtime_unit" translatable="false">minutes</string>
     <string name="movie_detail_text_in" translatable="false">In</string>
+
+    <!--    cast_detail-->
+    <string name="cast_detail_text_female" translatable="false">Female</string>
+    <string name="cast_detail_text_male" translatable="false">Male</string>
+    <string name="cast_detail_text_name" translatable="false">Name:</string>
+    <string name="cast_detail_text_gender" translatable="false">Gender:</string>
+    <string name="cast_detail_text_birthday" translatable="false">Birthday:</string>
+    <string name="cast_detail_text_place_of_birth" translatable="false">Place of birth:</string>
+    <string name="cast_detail_text_department" translatable="false">Department</string>
+    <string name="cast_detail_text_popularity" translatable="false">Popularity:</string>
+    <string name="cast_detail_text_biography" translatable="false">Biography:</string>
+
 </resources>

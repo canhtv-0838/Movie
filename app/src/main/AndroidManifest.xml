@@ -14,15 +14,17 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme.DayNight">
-        <activity android:name=".ui.landing.LandingActivity">
+<!--        <activity android:name=".ui.landing.LandingActivity">-->
+        <activity android:name=".ui.main.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.MainActivity" />
+<!--        <activity android:name=".ui.main.MainActivity" />-->
         <activity android:name="com.canh.movie.ui.movie_detail.MovieDetailActivity" />
+        <activity android:name=".ui.cast_detail.CastDetailActivity" />
     </application>
 
 </manifest>

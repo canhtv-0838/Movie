@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.canh.movie.ui.cast_detail.information.CastInformationViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/labelCastName"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:text="@string/cast_detail_text_name"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/labelCastGender"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="@string/cast_detail_text_gender"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelCastName" />
+
+            <TextView
+                android:id="@+id/labelCastBirthday"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="@string/cast_detail_text_birthday"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelCastGender" />
+
+            <TextView
+                android:id="@+id/labelCastPlaceOfBirth"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="@string/cast_detail_text_place_of_birth"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelCastBirthday" />
+
+            <TextView
+                android:id="@+id/labelCastDepartment"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="@string/cast_detail_text_department"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelCastPlaceOfBirth" />
+
+            <TextView
+                android:id="@+id/labelCastPopularity"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="@string/cast_detail_text_popularity"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelCastDepartment" />
+
+            <TextView
+                android:id="@+id/labelCastBiography"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="@string/cast_detail_text_biography"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelCastPopularity" />
+
+            <TextView
+                android:id="@+id/castName"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:text="@{viewModel.person.name}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/labelCastName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastName"
+                app:layout_constraintTop_toTopOf="@+id/labelCastName" />
+
+            <TextView
+                android:id="@+id/castGender"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:textColor="?android:attr/textColorPrimary"
+                app:bindGender="@{viewModel.person.gender}"
+                app:layout_constraintBottom_toBottomOf="@+id/labelCastGender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastGender"
+                app:layout_constraintTop_toTopOf="@+id/labelCastGender" />
+
+            <TextView
+                android:id="@+id/castBirthday"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:textColor="?android:attr/textColorPrimary"
+                app:bindDate="@{viewModel.person.birthday}"
+                app:layout_constraintBottom_toBottomOf="@+id/labelCastBirthday"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastBirthday"
+                app:layout_constraintTop_toTopOf="@+id/labelCastBirthday" />
+
+            <TextView
+                android:id="@+id/castPlaceOfBirth"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:text="@{viewModel.person.placeOfBirth}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/labelCastPlaceOfBirth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastPlaceOfBirth"
+                app:layout_constraintTop_toTopOf="@+id/labelCastPlaceOfBirth" />
+
+            <TextView
+                android:id="@+id/castDepartment"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:text="@{viewModel.person.knownForDepartment}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/labelCastDepartment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastDepartment"
+                app:layout_constraintTop_toTopOf="@+id/labelCastDepartment" />
+
+            <TextView
+                android:id="@+id/castPopularity"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:text="@{String.valueOf(viewModel.person.popularity)}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/labelCastPopularity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastPopularity"
+                app:layout_constraintTop_toTopOf="@+id/labelCastPopularity" />
+
+            <TextView
+                android:id="@+id/castBiograpy"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:layout_marginBottom="16dp"
+                android:text="@{viewModel.person.biography}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/labelCastBiography"
+                app:layout_constraintTop_toTopOf="@+id/labelCastBiography" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

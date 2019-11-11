@@ -178,4 +178,13 @@ object BindingUtils : BaseAdapter.OnItemClickListener {
             textView.text = outputFormatString
         }
     }
+
+    @BindingAdapter("bindGender")
+    @JvmStatic
+    fun formatGender(textView: TextView, gender : Int?){
+        gender?.let {
+            if (it == 0) textView.text = textView.context.getString(R.string.cast_detail_text_female)
+            if (it == 2) textView.text = textView.context.getString(R.string.cast_detail_text_male)
+        }
+    }
 }

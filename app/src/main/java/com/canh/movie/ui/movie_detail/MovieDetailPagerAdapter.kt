@@ -25,5 +25,6 @@ class MovieDetailPagerAdapter(fragmentManager: FragmentManager) :
 
     fun addFragments(fragment: Fragment) {
         fragments.add(fragment)
+        notifyDataSetChanged()
     }
 }

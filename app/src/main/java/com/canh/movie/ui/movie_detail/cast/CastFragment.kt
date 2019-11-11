@@ -6,10 +6,10 @@ import com.canh.movie.data.model.Cast
 import com.canh.movie.databinding.FragmentCastBinding
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.base.BaseFragment
-import com.canh.movie.utils.log
+import com.canh.movie.ui.cast_detail.CastDetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class CastFragment : BaseFragment<FragmentCastBinding,CastViewModel>(),
+class CastFragment : BaseFragment<FragmentCastBinding, CastViewModel>(),
     BaseAdapterItemClickListener<Cast> {
 
     override val viewModel: CastViewModel by viewModel()
@@ -17,7 +17,7 @@ class CastFragment : BaseFragment<FragmentCastBinding,CastViewModel>(),
     override fun getLayoutResource(): Int = R.layout.fragment_cast
 
     override fun initComponents() {
-    listener = this
+        listener = this
     }
 
     override fun initData() {
@@ -26,17 +26,18 @@ class CastFragment : BaseFragment<FragmentCastBinding,CastViewModel>(),
             viewModel.postCasts(it)
         }
     }
+
     override fun onItemClick(item: Cast) {
-        log("${item.name}")
+        startActivity(CastDetailActivity.getIntent(activity!!, item.id))
     }
 
     companion object {
         private const val ARGUMENT_CASTS = "ARGUMENT_CASTS"
 
         @JvmStatic
-        lateinit var listener:  BaseAdapterItemClickListener<Cast>
+        lateinit var listener: BaseAdapterItemClickListener<Cast>
 
-        fun newInstance(casts : List<Cast>) = CastFragment().apply {
+        fun newInstance(casts: List<Cast>) = CastFragment().apply {
             arguments = Bundle().apply {
                 putParcelableArrayList(ARGUMENT_CASTS, casts as ArrayList)
             }

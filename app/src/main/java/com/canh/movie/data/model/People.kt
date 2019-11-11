@@ -1,8 +1,11 @@
 package com.canh.movie.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class People(
     @SerializedName("birthday")
     @Expose
@@ -43,4 +46,4 @@ data class People(
     @SerializedName("homepage")
     @Expose
     val homePage: String? = null
-)
+) : Parcelable
