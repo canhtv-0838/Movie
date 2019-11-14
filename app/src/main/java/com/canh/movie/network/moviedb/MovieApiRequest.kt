@@ -42,6 +42,13 @@ interface MovieApiRequest {
         @Query("page") page: Int
     ): Deferred<MovieResponse>
 
+    @GET("discover/movie")
+    fun getMoviesByCompanyAsync(
+        @Query("with_companies") companyId: Int,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): Deferred<MovieResponse>
+
     @GET("movie/{movie_id}")
     fun getMovieDetailAsync(
         @Path("movie_id") movieId: Int,
@@ -54,4 +61,9 @@ interface MovieApiRequest {
         @Path("person_id") personId: Int,
         @Query("language") language: String
     ): Deferred<People>
+
+    @GET("company/{company_id}")
+    fun getCompanyAsync(
+        @Path("company_id") companyId: Int
+    ): Deferred<Company>
 }

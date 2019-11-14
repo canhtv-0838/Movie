@@ -6,6 +6,7 @@ import com.canh.movie.data.model.Company
 import com.canh.movie.databinding.FragmentProducerBinding
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.base.BaseFragment
+import com.canh.movie.ui.producer_detail.ProducerDetailActivity
 import com.canh.movie.utils.log
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -28,7 +29,7 @@ class ProducerFragment : BaseFragment<FragmentProducerBinding, ProducerViewModel
     }
 
     override fun onItemClick(item: Company) {
-        log("${item.name}")
+        startActivity(ProducerDetailActivity.getIntent(activity!!,item.id, item.name))
     }
 
     companion object {

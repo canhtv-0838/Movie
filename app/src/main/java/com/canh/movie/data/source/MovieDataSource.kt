@@ -33,6 +33,11 @@ interface MovieDataSource {
             page: Int
         ): CoroutinesResult<MovieResponse>
 
+        suspend fun getMoviesByCompany(
+            companyId: Int,
+            language: String,
+            page: Int
+        ): CoroutinesResult<MovieResponse>
 
         suspend fun getMovieDetail(
             movieId: Int,
@@ -44,5 +49,10 @@ interface MovieDataSource {
             personId: Int,
             language: String
         ): CoroutinesResult<People>
+
+        suspend fun getCompany(
+            companyId: Int
+        ): CoroutinesResult<Company>
+
     }
 }

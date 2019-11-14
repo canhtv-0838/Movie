@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="android.view.View" />
 
         <variable
+            name="producer"
+            type="com.canh.movie.ui.producer_detail.ProducerDetailActivity" />
+
+        <variable
             name="viewModel"
-            type="com.canh.movie.ui.cast_detail.CastDetailViewModel" />
+            type="com.canh.movie.ui.producer_detail.ProducerDetailViewModel" />
+
+        <variable
+            name="resources"
+            type="com.canh.movie.utils.Resources" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/castDetailToolBar"
+            android:id="@+id/producerDetailToolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimarySurface"
@@ -28,36 +38,22 @@
             app:title="@string/app_name"
             app:titleTextColor="@android:color/white" />
 
-        <ImageView
-            android:id="@+id/castDetailImage"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_250"
-            android:scaleType="centerCrop"
-            app:bindImageNotRoundCorners="@{viewModel.person.profilePath}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/castDetailToolBar" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/castDetailTabLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/castDetailImage"
-            app:tabGravity="center" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/castDetailViewPager"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/castRecyclerMovies"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:orientation="vertical"
+            app:bindItems="@{viewModel.moviesResponse.results}"
+            app:bindLayoutRes="@{resources.ITEM_MOVIE_MOVIES}"
+            app:bindListener="@{producer.listener}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/castDetailTabLayout" />
+            app:layout_constraintTop_toBottomOf="@id/producerDetailToolBar" />
 
         <View
-            android:id="@+id/castDetailViewLoading"
+            android:id="@+id/producerDetailViewLoading"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:color/white"
@@ -72,7 +68,7 @@
             tools:visibility="invisible" />
 
         <ProgressBar
-            android:id="@+id/castDetailProgressBar"
+            android:id="@+id/producerDetailProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/AppProgressBar"

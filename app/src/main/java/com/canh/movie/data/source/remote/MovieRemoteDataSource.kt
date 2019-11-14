@@ -3,6 +3,7 @@ package com.canh.movie.data.source.remote
 import com.canh.movie.coroutines.CoroutinesResult
 import com.canh.movie.coroutines.awaitResult
 import com.canh.movie.data.model.CategoryQuery
+import com.canh.movie.data.model.Company
 import com.canh.movie.data.model.Movie
 import com.canh.movie.data.model.People
 import com.canh.movie.data.model.response.GenresResponse
@@ -42,6 +43,13 @@ class MovieRemoteDataSource(private val movieApi: MovieApiRequest) : MovieDataSo
     ): CoroutinesResult<MovieResponse> =
         movieApi.getMoviesByCastAsync(castId, language, page).awaitResult()
 
+    override suspend fun getMoviesByCompany(
+        companyId: Int,
+        language: String,
+        page: Int
+    ): CoroutinesResult<MovieResponse> =
+        movieApi.getMoviesByCompanyAsync(companyId, language, page).awaitResult()
+
     override suspend fun getMovieDetail(
         movieId: Int,
         language: String,
@@ -51,5 +59,8 @@ class MovieRemoteDataSource(private val movieApi: MovieApiRequest) : MovieDataSo
 
     override suspend fun getPerson(personId: Int, language: String): CoroutinesResult<People> =
         movieApi.getPersonAsync(personId, language).awaitResult()
+
+    override suspend fun getCompany(companyId: Int): CoroutinesResult<Company> =
+        movieApi.getCompanyAsync(companyId).awaitResult()
 
 }
