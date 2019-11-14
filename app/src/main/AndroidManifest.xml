@@ -26,6 +26,7 @@
         <activity android:name="com.canh.movie.ui.movie_detail.MovieDetailActivity" />
         <activity android:name=".ui.cast_detail.CastDetailActivity" />
         <activity android:name=".ui.producer_detail.ProducerDetailActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
     </application>
 
 </manifest>

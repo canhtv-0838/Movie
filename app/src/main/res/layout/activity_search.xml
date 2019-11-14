@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+<!--        <variable-->
+<!--            name="search"-->
+<!--            type="com.canh.movie.ui.main.search.searchFragment" />-->
+
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.canh.movie.ui.main.search.searchViewModel" />-->
+
+        <variable
+            name="resources"
+            type="com.canh.movie.utils.Resources" />
+
+       </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/searchAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/searchCollapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                  <androidx.constraintlayout.widget.ConstraintLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="?attr/actionBarSize">
+                      <ImageView
+                          android:id="@+id/searchButtonBack"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:src="@drawable/ic_arrow_back_white_24dp"
+                          android:clickable="true"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          android:layout_marginStart="@dimen/dp_16"/>
+                      <EditText
+                          android:id="@+id/searchTextSearch"
+                          android:layout_width="0dp"
+                          android:layout_height="0dp"
+                          app:layout_constraintStart_toEndOf="@id/searchButtonBack"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          android:layout_marginStart="@dimen/dp_16"
+                          android:layout_marginEnd="@dimen/dp_16"
+                          android:layout_marginTop="@dimen/dp_8"
+                          android:layout_marginBottom="@dimen/dp_8"
+                          android:paddingStart="@dimen/dp_16"
+                          android:hint="Search..."
+                          android:inputType="text"
+                          android:background="@null"
+                          android:imeOptions="actionSearch"
+                          android:textColor="?attr/colorPrimary"
+                          android:paddingEnd="@dimen/dp_8"
+                          android:paddingBottom="@dimen/dp_4"
+                          android:paddingTop="@dimen/dp_4"
+                          android:clickable="true" />
+
+                  </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/searchNestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/searchRecyclerMovies"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+<!--        <View-->
+<!--            android:id="@+id/searchViewLoading"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="?attr/colorSurface"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            android:visibility="@{viewModel.isAllLoadedObservable ? View.GONE : View.VISIBLE }"-->
+<!--            tools:visibility="invisible" />-->
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/searchProgressBar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:theme="@style/AppProgressBar"-->
+<!--            android:visibility="@{viewModel.isAllLoadedObservable ? View.GONE : View.VISIBLE }" />-->
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

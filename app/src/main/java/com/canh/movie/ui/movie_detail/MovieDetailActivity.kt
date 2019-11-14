@@ -17,7 +17,6 @@ import com.canh.movie.ui.movie_detail.cast.CastFragment
 import com.canh.movie.ui.movie_detail.information.InformationFragment
 import com.canh.movie.ui.movie_detail.producer.ProducerFragment
 import com.canh.movie.ui.movie_detail.trailer.TrailerFragment
-import com.canh.movie.utils.log
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -93,7 +92,6 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
     }
 
     override fun playTrailer(trailerKey: String) {
-        log("playTrailer")
         youtubeFragment.setTrailerKey(trailerKey)
         youtubeFragment.playTrailer()
     }

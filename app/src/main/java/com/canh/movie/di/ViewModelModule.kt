@@ -15,6 +15,7 @@ import com.canh.movie.ui.movie_detail.information.InformationViewModel
 import com.canh.movie.ui.movie_detail.producer.ProducerViewModel
 import com.canh.movie.ui.movie_detail.trailer.TrailerViewModel
 import com.canh.movie.ui.producer_detail.ProducerDetailViewModel
+import com.canh.movie.ui.search.SearchViewModel
 import com.canh.movie.utils.KoinNames
 import com.canh.movie.utils.KoinNames.APP_CONTEXT
 import org.koin.android.viewmodel.dsl.viewModel
@@ -66,4 +67,6 @@ val viewModelModule = module {
     viewModel {
         ProducerDetailViewModel(get(named(KoinNames.MOVIE_REPOSITORY)))
     }
+
+    viewModel { SearchViewModel() }
 }

@@ -17,6 +17,7 @@ import com.canh.movie.ui.base.BaseActivity
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.main.home.HomeFragment
 import com.canh.movie.ui.main.movies.MoviesFragment
+import com.canh.movie.ui.search.SearchActivity
 import com.canh.movie.utils.Constants.NIGH_MODE
 import com.canh.movie.utils.SharedPreference
 import com.canh.movie.utils.widget.BackDropView
@@ -56,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.menu_search -> {
-            //todo
+            startActivity(Intent(this, SearchActivity::class.java))
             true
         }
         R.id.menu_filter -> {

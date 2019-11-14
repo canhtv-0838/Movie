@@ -9,7 +9,6 @@ import com.canh.movie.databinding.FragmentTrailerBinding
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.base.BaseFragment
 import com.canh.movie.ui.movie_detail.MovieTrailerListener
-import com.canh.movie.utils.log
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TrailerFragment : BaseFragment<FragmentTrailerBinding, TrailerViewModel>(),
@@ -36,7 +35,6 @@ class TrailerFragment : BaseFragment<FragmentTrailerBinding, TrailerViewModel>()
     }
 
     override fun onItemClick(item: Video) {
-        log("click")
        trailerListener.playTrailer(item.key)
     }
 
