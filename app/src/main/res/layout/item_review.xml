@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.canh.movie.data.model.Review" />
+
+        <variable
+            name="listener"
+            type="com.canh.movie.ui.base.BaseAdapterItemClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:onClick="@{()->listener.onItemClick(item)}"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_8">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="?android:textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="SWITCH"
+            android:text="@{item.author}"
+            android:textColor="@color/color_yellow"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            style="?android:textAppearanceMedium"
+            android:textColor="@color/color_yellow"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/inforTextOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:textAppearanceMedium"
+            android:text="@{item.content}"
+            android:scrollbars="vertical"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+</layout>

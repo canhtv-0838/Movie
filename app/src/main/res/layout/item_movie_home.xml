@@ -21,6 +21,7 @@
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:layout_margin="@dimen/dp_2"
         android:onClick="@{()->listener.onItemClick(item)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +77,7 @@
 
             <TextView
                 android:id="@+id/textMovie"
-                style="@style/TextAppearance.AppCompat.Small"
+                style="?android:textAppearanceSmall"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_4"

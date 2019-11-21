@@ -4,15 +4,20 @@ import com.canh.movie.ui.cast_detail.CastDetailViewModel
 import com.canh.movie.ui.cast_detail.information.CastInformationViewModel
 import com.canh.movie.ui.cast_detail.movies.CastMoviesViewModel
 import com.canh.movie.ui.landing.LandingViewModel
-import com.canh.movie.ui.landing.login.LoginViewModel
+import com.canh.movie.ui.main.login.LoginViewModel
 import com.canh.movie.ui.landing.splash.SplashViewModel
 import com.canh.movie.ui.main.MainViewModel
 import com.canh.movie.ui.main.home.HomeViewModel
 import com.canh.movie.ui.main.movies.MoviesViewModel
+import com.canh.movie.ui.main.profile.ProfileViewModel
+import com.canh.movie.ui.main.register.RegisterViewModel
+import com.canh.movie.ui.main.timeline.TimelineViewModel
 import com.canh.movie.ui.movie_detail.MovieDetailViewModel
 import com.canh.movie.ui.movie_detail.cast.CastViewModel
 import com.canh.movie.ui.movie_detail.information.InformationViewModel
 import com.canh.movie.ui.movie_detail.producer.ProducerViewModel
+import com.canh.movie.ui.movie_detail.review.ReviewViewModel
+import com.canh.movie.ui.movie_detail.sharing.SharePostViewModel
 import com.canh.movie.ui.movie_detail.trailer.TrailerViewModel
 import com.canh.movie.ui.producer_detail.ProducerDetailViewModel
 import com.canh.movie.ui.search.SearchViewModel
@@ -27,7 +32,11 @@ val viewModelModule = module {
 
     viewModel { LandingViewModel() }
 
-    viewModel { MainViewModel(get(named(KoinNames.MOVIE_REPOSITORY))) }
+    viewModel {
+        MainViewModel(
+            get(named(KoinNames.MOVIE_REPOSITORY))
+        )
+    }
 
     viewModel {
         HomeViewModel(
@@ -48,8 +57,6 @@ val viewModelModule = module {
 
     viewModel { InformationViewModel() }
 
-    viewModel { LoginViewModel() }
-
     viewModel { CastViewModel() }
 
     viewModel { ProducerViewModel() }
@@ -68,5 +75,19 @@ val viewModelModule = module {
         ProducerDetailViewModel(get(named(KoinNames.MOVIE_REPOSITORY)))
     }
 
-    viewModel { SearchViewModel() }
+    viewModel {
+        SearchViewModel(get(named(KoinNames.MOVIE_REPOSITORY)))
+    }
+
+    viewModel { LoginViewModel(get(named(KoinNames.MINE_REPOSITORY))) }
+
+    viewModel { RegisterViewModel(get(named(KoinNames.MINE_REPOSITORY))) }
+
+    viewModel { ProfileViewModel(get(named(KoinNames.MINE_REPOSITORY))) }
+
+    viewModel { SharePostViewModel(get(named(KoinNames.MINE_REPOSITORY))) }
+
+    viewModel { TimelineViewModel(get(named(KoinNames.MINE_REPOSITORY))) }
+
+    viewModel { ReviewViewModel(get(named(KoinNames.MOVIE_REPOSITORY))) }
 }

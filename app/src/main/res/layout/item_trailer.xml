@@ -49,7 +49,7 @@
 
             <TextView
                 android:id="@+id/textMovie"
-                style="@style/TextAppearance.AppCompat.Small"
+                style="?android:textAppearanceSmall"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_4"

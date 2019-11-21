@@ -30,8 +30,10 @@ class YoutubeFragment : YouTubePlayerFragment(), YouTubePlayer.OnInitializedList
                 youTubePlayer?.fullscreenControlFlags =
                     YouTubePlayer.FULLSCREEN_FLAG_CONTROL_ORIENTATION
             }
-            youTubePlayer?.cueVideo(trailerKey)
-            youTubePlayer?.setOnFullscreenListener(this)
+            trailerKey?.let {
+                youTubePlayer?.cueVideo(trailerKey)
+                youTubePlayer?.setOnFullscreenListener(this)
+            }
         }
 
     }

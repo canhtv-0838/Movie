@@ -4,15 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.Observer
 import com.canh.movie.R
-import com.canh.movie.data.model.Movie
 import com.canh.movie.data.model.People
 import com.canh.movie.databinding.ActivityCastDetailBinding
 import com.canh.movie.ui.base.BaseActivity
 import com.canh.movie.ui.cast_detail.information.CastInformationFragment
 import com.canh.movie.ui.cast_detail.movies.CastMoviesFragment
-import com.canh.movie.ui.movie_detail.information.InformationFragment
 import kotlinx.android.synthetic.main.activity_cast_detail.*
-import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CastDetailActivity : BaseActivity<ActivityCastDetailBinding, CastDetailViewModel>() {
@@ -48,7 +45,7 @@ class CastDetailActivity : BaseActivity<ActivityCastDetailBinding, CastDetailVie
     }
 
     private fun initPagerAdapter(people: People) {
-        pagerAdapter = CastDetailPagerAdapter(supportFragmentManager)
+        pagerAdapter = CastDetailPagerAdapter(supportFragmentManager, this)
         castDetailViewPager?.adapter = pagerAdapter
         pagerAdapter.addFragments(CastInformationFragment.newInstance(people))
         pagerAdapter.addFragments(CastMoviesFragment.newInstance(people))

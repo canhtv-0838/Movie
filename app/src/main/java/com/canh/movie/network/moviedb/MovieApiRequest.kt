@@ -3,12 +3,13 @@ package com.canh.movie.network.moviedb
 import com.canh.movie.data.model.*
 import com.canh.movie.data.model.response.GenresResponse
 import com.canh.movie.data.model.response.MovieResponse
+import com.canh.movie.data.model.response.ReviewResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val BASE_URL = "https://api.themoviedb.org/3/"
+const val MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3/"
 
 interface MovieApiRequest {
 
@@ -66,4 +67,19 @@ interface MovieApiRequest {
     fun getCompanyAsync(
         @Path("company_id") companyId: Int
     ): Deferred<Company>
+
+    @GET("search/movie")
+    fun searchMoviesAsync(
+        @Query("query") query: String,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): Deferred<MovieResponse>
+
+    @GET("movie/{movie_id}/reviews")
+    fun getMovieReviewsAsync(
+        @Path("movie_id") movieId: Int,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): Deferred<ReviewResponse>
 }
+

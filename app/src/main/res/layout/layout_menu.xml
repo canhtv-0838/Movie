@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuButtonLogin"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/menu_login"
+        android:textColor="@color/color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuButtonHome"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/menu_home"
+        android:visibility="gone"
+        android:textColor="@color/color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuButtonProfile"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/menu_profile"
+        android:visibility="gone"
+        android:textColor="@color/color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuButtonTimeline"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/menu_timeline"
+        android:visibility="gone"
+        android:textColor="@color/color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuButtonLogout"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/menu_logout"
+        android:visibility="gone"
+        android:textColor="@color/color_primary" />
+
+</merge>

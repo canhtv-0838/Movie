@@ -6,4 +6,58 @@
     <string name="title_popular">Phổ biến</string>
     <string name="title_top_rate">Đánh giá cao</string>
     <string name="title_upcoming">Sắp chiếu</string>
+    <string name="cast_detail_text_biography" translatable="false">Tiểu sử:</string>
+    <string name="cast_detail_text_birthday" translatable="false">Ngày sinh:</string>
+    <string name="cast_detail_text_department" translatable="false">Lĩnh vực</string>
+    <string name="cast_detail_text_female" translatable="false">Nữ</string>
+    <string name="cast_detail_text_gender">Giới tính:</string>
+    <string name="cast_detail_text_male">Nam</string>
+    <string name="cast_detail_text_name">Tên:</string>
+    <string name="cast_detail_text_place_of_birth">Nơi sinh:</string>
+    <string name="cast_detail_text_popularity">Yêu thích:</string>
+    <string name="error_connect">Kết nối mạng không khả dụng</string>
+    <string name="movie_detail_overview_label">Tổng quan</string>
+    <string name="movie_detail_runtime_unit">phút</string>
+    <string name="movie_detail_text_in">Trong</string>
+    <string name="search_hint_search">Tìm kiếm...</string>
+    <string name="title_casting">Cast</string>
+    <string name="title_trailer">Trailer</string>
+    <string name="title_search">Tìm kiếm</string>
+    <string name="title_producer">Hãng sản xuất</string>
+    <string name="title_movie_play" translatable="false">Xem phim</string>
+    <string name="movie_detail_title_information">Thông tin</string>
+    <string name="movie_detail_title_producer">Hãng sản xuất</string>
+    <string name="cast_detail_title_information">Thông tin</string>
+    <string name="cast_detail_title_movies">Phim</string>
+    <string name="login_button_text_login">ĐĂNG NHẬP</string>
+    <string name="login_button_text_register">ĐĂNG KÝ</string>
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Mật khẩu</string>
+    <string name="login_title_login">ĐĂNG NHẬP</string>
+    <string name="menu_login">Đăng nhập</string>
+    <string name="menu_timeline">Bảng tin</string>
+    <string name="register_button_text_login">ĐĂNG NHẬP</string>
+    <string name="register_button_text_register">ĐĂNG KÝ</string>
+    <string name="register_hint_birthday">Ngày sinh</string>
+    <string name="register_hint_email">Email</string>
+    <string name="register_hint_fullname">Tên đầy đủ</string>
+    <string name="register_hint_password">Mật khẩu</string>
+    <string name="register_hint_place_of_birth">Nơi sinh</string>
+    <string name="register_hint_username">Tên tài khoản</string>
+    <string name="register_title_register">ĐĂNG KÝ</string>
+    <string name="menu_logout">Đăng xuất</string>
+    <string name="menu_profile">Trang cá nhân</string>
+    <string name="menu_home">Trang chủ</string>
+    <string name="register_text_gender_female">Nữ</string>
+    <string name="register_text_gender_male">Nam</string>
+    <string name="share_post_button_share">Chia sẻ ngay</string>
+    <string name="share_post_hint_your_comment">Bình luận của bạn… (tối đa 1000 kí tự)</string>
+    <string name="share_post_title_share_movie">CHIA SẺ PHIM</string>
+    <string name="movie_detail_title_reviews">Nhận xét</string>
+    <string name="profile_alert_delete_post">Bạn có muốn xóa bài đăng này không?</string>
+    <string name="profile_alert_negative_button">Hủy bỏ</string>
+    <string name="profile_alert_positive_button">Xóa</string>
+    <string name="main_alert_logout">Bạn có muốn đăng xuất?</string>
+    <string name="main_alert_logout_negative_button">Đăng xuất</string>
+    <string name="main_alert_logout_positive_button">Hủy bỏ</string>
 </resources>

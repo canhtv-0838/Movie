@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.canh.movie.ui.main.profile.ProfileViewModel" />
+
+        <variable
+            name="resources"
+            type="com.canh.movie.utils.Resources" />
+
+        <variable
+            name="proflie"
+            type="com.canh.movie.ui.main.profile.ProfileFragment" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/homeAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_176">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/homeCollapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+    
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvProfileAvatar"
+                        android:layout_width="@dimen/dp_128"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dp_16"
+                        android:background="?attr/colorSurface"
+                        android:src="@drawable/ic_photo_camera_black_24dp"
+                        android:tintMode="?android:attr/colorPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivProfileAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:bindSmallImageFromMine="@{viewModel.user.profilePath}"
+                            android:background="?attr/colorSurface"
+                            tools:src="@tools:sample/avatars"/>
+                        
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        style="@style/TextAppearance.MaterialComponents.Headline5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@{viewModel.user.fullname}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cvProfileAvatar"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvProfileBirthday"
+                        style="?android:attr/textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@{viewModel.user.birthday}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cvProfileAvatar"
+                        app:layout_constraintTop_toBottomOf="@id/tvProfileName" />
+
+                    <TextView
+                        android:id="@+id/tvProfilePlaceOfBirth"
+                        style="?android:attr/textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{viewModel.user.placeOfBirth}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cvProfileAvatar"
+                        app:layout_constraintTop_toBottomOf="@id/tvProfileBirthday" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/profileNestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profileRecyclerPosts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:bindItems="@{viewModel.sharedPosts}"
+                    app:bindLayoutRes="@{resources.ITEM_SHARE_PROFILE}"
+                    app:bindListener="@{proflie.listener}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

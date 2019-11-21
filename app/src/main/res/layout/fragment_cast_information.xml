@@ -39,7 +39,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelCastName" />
+                app:layout_constraintTop_toBottomOf="@+id/castName" />
 
             <TextView
                 android:id="@+id/labelCastBirthday"
@@ -63,7 +63,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelCastBirthday" />
+                app:layout_constraintTop_toBottomOf="@+id/castBirthday" />
 
             <TextView
                 android:id="@+id/labelCastDepartment"
@@ -75,7 +75,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelCastPlaceOfBirth" />
+                app:layout_constraintTop_toBottomOf="@+id/castPlaceOfBirth" />
 
             <TextView
                 android:id="@+id/labelCastPopularity"
@@ -87,7 +87,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelCastDepartment" />
+                app:layout_constraintTop_toBottomOf="@+id/castDepartment" />
 
             <TextView
                 android:id="@+id/labelCastBiography"
@@ -110,7 +110,6 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:text="@{viewModel.person.name}"
                 android:textColor="?android:attr/textColorPrimary"
-                app:layout_constraintBottom_toBottomOf="@+id/labelCastName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/labelCastName"
                 app:layout_constraintTop_toTopOf="@+id/labelCastName" />
@@ -124,7 +123,6 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:textColor="?android:attr/textColorPrimary"
                 app:bindGender="@{viewModel.person.gender}"
-                app:layout_constraintBottom_toBottomOf="@+id/labelCastGender"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/labelCastGender"
                 app:layout_constraintTop_toTopOf="@+id/labelCastGender" />
@@ -138,7 +136,6 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:textColor="?android:attr/textColorPrimary"
                 app:bindDate="@{viewModel.person.birthday}"
-                app:layout_constraintBottom_toBottomOf="@+id/labelCastBirthday"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/labelCastBirthday"
                 app:layout_constraintTop_toTopOf="@+id/labelCastBirthday" />
@@ -152,7 +149,6 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:text="@{viewModel.person.placeOfBirth}"
                 android:textColor="?android:attr/textColorPrimary"
-                app:layout_constraintBottom_toBottomOf="@+id/labelCastPlaceOfBirth"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/labelCastPlaceOfBirth"
                 app:layout_constraintTop_toTopOf="@+id/labelCastPlaceOfBirth" />
@@ -166,7 +162,6 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:text="@{viewModel.person.knownForDepartment}"
                 android:textColor="?android:attr/textColorPrimary"
-                app:layout_constraintBottom_toBottomOf="@+id/labelCastDepartment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/labelCastDepartment"
                 app:layout_constraintTop_toTopOf="@+id/labelCastDepartment" />
@@ -180,7 +175,6 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:text="@{String.valueOf(viewModel.person.popularity)}"
                 android:textColor="?android:attr/textColorPrimary"
-                app:layout_constraintBottom_toBottomOf="@+id/labelCastPopularity"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/labelCastPopularity"
                 app:layout_constraintTop_toTopOf="@+id/labelCastPopularity" />

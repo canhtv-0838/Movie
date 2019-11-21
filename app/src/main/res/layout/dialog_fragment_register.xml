@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="?attr/colorSurface">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <RadioGroup
+            android:id="@+id/registerRadioGrp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_8"
+            android:paddingRight="@dimen/dp_8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextBirthday">
+
+            <RadioButton
+                android:id="@+id/registerRadioMale"
+                style="?android:attr/textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/register_text_gender_male"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <RadioButton
+                android:id="@+id/registerRadioFemale"
+                style="?android:attr/textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="@string/register_text_gender_female"
+                android:textColor="?android:attr/textColorPrimary" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/registerTitle"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:text="@string/register_title_register"
+            android:textColor="@color/color_primary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registerButtonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginBottom="@dimen/dp_32"
+            android:minWidth="@dimen/dp_128"
+            android:text="@string/register_button_text_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/viewSpace"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextPassword" />
+
+        <View
+            android:id="@+id/viewSpace"
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/registerButtonRegister"
+            app:layout_constraintEnd_toStartOf="@id/registerButtonRegister"
+            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintStart_toEndOf="@id/registerButtonLogin"
+            app:layout_constraintTop_toTopOf="@+id/registerButtonLogin"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registerButtonRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginBottom="@dimen/dp_32"
+            android:minWidth="@dimen/dp_128"
+            android:text="@string/register_button_text_register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/viewSpace"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextPassword" />
+
+
+        <EditText
+            android:id="@+id/registerTextFullname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:background="@drawable/bg_text_input"
+            android:ems="10"
+            android:hint="@string/register_hint_fullname"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
+
+
+        <EditText
+            android:id="@+id/registerTextBirthday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@drawable/bg_text_input"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/register_hint_birthday"
+            android:inputType="date"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextFullname" />
+
+        <EditText
+            android:id="@+id/registerTextPlaceOfBirth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@drawable/bg_text_input"
+            android:ems="10"
+            android:hint="@string/register_hint_place_of_birth"
+            android:inputType="text"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerRadioGrp" />
+
+        <EditText
+            android:id="@+id/registerTextUsername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@drawable/bg_text_input"
+            android:ems="10"
+            android:hint="@string/register_hint_username"
+            android:inputType="textPersonName"
+            android:maxLength="254"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextPlaceOfBirth" />
+
+        <EditText
+            android:id="@+id/registerTextEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@drawable/bg_text_input"
+            android:hint="@string/register_hint_email"
+            android:inputType="textEmailAddress"
+            android:maxLength="254"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextUsername" />
+
+        <EditText
+            android:id="@+id/registerTextPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@drawable/bg_text_input"
+            android:ems="10"
+            android:hint="@string/register_hint_password"
+            android:inputType="textPassword"
+            android:maxLength="254"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8"
+            android:textColor="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registerTextEmail" />
+
+        <ProgressBar
+            android:id="@+id/registerProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppProgressBar"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

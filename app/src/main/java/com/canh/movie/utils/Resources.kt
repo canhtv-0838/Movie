@@ -9,4 +9,8 @@ object Resources {
     const val ITEM_TRAILER = R.layout.item_trailer
     const val ITEM_CAST = R.layout.item_cast
     const val ITEM_PRODUCER = R.layout.item_producer
+    const val ITEM_SHARE_TIMELINE = R.layout.item_share_timeline
+    const val ITEM_SHARE_PROFILE = R.layout.item_share_profile
+    const val ITEM_REVIEW = R.layout.item_review
+
 }

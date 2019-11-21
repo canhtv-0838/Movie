@@ -10,6 +10,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import com.google.gson.GsonBuilder
+import com.google.gson.Gson
+
+
 
 
 object RetrofitBuilder {
@@ -23,7 +27,7 @@ object RetrofitBuilder {
     private const val TIME_CACHE_OFFLINE = "public, only-if-cached, max-stale = 86400"//1 day
     private const val CACHE_CONTROL = "Cache-Control"
 
-    val interceptorLogging : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+    private val interceptorLogging : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         this.level = HttpLoggingInterceptor.Level.BODY
     }
 

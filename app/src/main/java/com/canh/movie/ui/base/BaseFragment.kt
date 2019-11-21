@@ -62,6 +62,18 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
                 if (addToBackStack) addToBackStack(null)
             }.commit()
 
+    open fun replaceFragmentAnimFadeOut(
+        fragment: Fragment,
+        addToBackStack: Boolean
+    ){
+        activity!!.supportFragmentManager.beginTransaction()
+            .replace(containerId!!, fragment)
+            .setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out)
+            .apply {
+                if (addToBackStack) addToBackStack(null)
+            }.commit()
+    }
+
     open fun addFragment(
         fragment: Fragment,
         addToBackStack: Boolean

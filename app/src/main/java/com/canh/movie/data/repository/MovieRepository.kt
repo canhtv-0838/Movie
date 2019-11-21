@@ -7,6 +7,7 @@ import com.canh.movie.data.model.Movie
 import com.canh.movie.data.model.People
 import com.canh.movie.data.model.response.GenresResponse
 import com.canh.movie.data.model.response.MovieResponse
+import com.canh.movie.data.model.response.ReviewResponse
 import com.canh.movie.data.source.MovieDataSource
 
 class MovieRepository(private val remote: MovieDataSource.Remote) :
@@ -61,4 +62,18 @@ class MovieRepository(private val remote: MovieDataSource.Remote) :
 
     override suspend fun getCompany(companyId: Int): CoroutinesResult<Company> =
         remote.getCompany(companyId)
+
+    override suspend fun searchMovies(
+        query: String,
+        language: String,
+        page: Int
+    ): CoroutinesResult<MovieResponse> =
+        remote.searchMovies(query, language, page)
+
+    override suspend fun getMovieReviews(
+        movieId: Int,
+        language: String,
+        page: Int
+    ): CoroutinesResult<ReviewResponse> =
+        remote.getMovieReviews(movieId, language, page)
 }

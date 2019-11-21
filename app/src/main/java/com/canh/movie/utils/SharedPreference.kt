@@ -19,6 +19,16 @@ class SharedPreference(val context: Context) {
         return sharedPref.getBoolean(KEY_NAME, defaultValue)
     }
 
+    fun saveValueLong(KEY_NAME: String, value: Long) {
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+        editor.putLong(KEY_NAME, value)
+        editor.apply()
+    }
+
+    fun getValueLong(KEY_NAME: String, defaultValue: Long): Long {
+        return sharedPref.getLong(KEY_NAME,defaultValue)
+    }
+
     fun clearSharedPreference() {
         val editor: SharedPreferences.Editor = sharedPref.edit()
         editor.clear()

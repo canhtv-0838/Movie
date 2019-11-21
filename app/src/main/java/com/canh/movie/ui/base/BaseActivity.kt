@@ -42,7 +42,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     protected abstract fun getContainerId(): Int
 
     protected open fun setNightMode() {
-        val isNight = SharedPreference(this).getValueBoolean(Constants.NIGH_MODE, false)
+        val isNight = SharedPreference(this).getValueBoolean(Constants.PREF_NIGH_MODE, false)
         AppCompatDelegate.setDefaultNightMode(
             if (isNight) AppCompatDelegate.MODE_NIGHT_YES
             else AppCompatDelegate.MODE_NIGHT_NO

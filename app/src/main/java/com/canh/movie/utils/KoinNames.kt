@@ -18,4 +18,12 @@ object KoinNames {
     const val MOVIE_REPOSITORY = "name_movie_repository"
 
     const val SHARED_PREFERENCES = "name_shared_preferences"
+
+    const val API_MINE = "name_mine_api"
+
+    const val MINE_BASE_URL = "name_mine_base_url"
+
+    const val MINE_REMOTE_DATA_SOURCE = "name_mine_remote_data_source"
+
+    const val MINE_REPOSITORY = "name_mine_repository"
 }

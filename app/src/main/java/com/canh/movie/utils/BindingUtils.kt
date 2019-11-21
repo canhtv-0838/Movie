@@ -1,7 +1,8 @@
 package com.canh.movie.utils
 
-import android.graphics.Color
 import android.os.Build
+import android.text.format.DateUtils
+import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RatingBar
@@ -19,8 +20,7 @@ import com.canh.movie.ui.base.BaseAdapter
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.main.home.HomeFragment
 import com.canh.movie.ui.main.home.category.CategoryAdapter
-import jp.wasabeef.blurry.Blurry
-import kotlinx.android.synthetic.main.fragment_splash.view.*
+import com.canh.movie.ui.main.timeline.TimelineListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -74,6 +74,27 @@ object BindingUtils : BaseAdapter.OnItemClickListener {
         }
     }
 
+    @BindingAdapter("bindItems", "bindLayoutRes", "bindListener")
+    @JvmStatic
+    fun <T> bindItems(
+        recycler: RecyclerView,
+        items: List<T>?,
+        layoutRes: Int,
+        listener: TimelineListener
+    ) {
+        val adapter = BaseAdapter<T>(layoutRes)
+        items?.let {
+            adapter.apply {
+                setItems(items)
+                setListener(listener)
+            }
+        }
+        recycler.apply {
+            setHasFixedSize(true)
+            this.adapter = adapter
+        }
+    }
+
     @BindingAdapter("bindImage")
     @JvmStatic
     fun bindImageFromUrl(imageView: ImageView, imageUrl: String?) {
@@ -117,6 +138,42 @@ object BindingUtils : BaseAdapter.OnItemClickListener {
         }
     }
 
+    @BindingAdapter("bindSmallImageFromMine")
+    @JvmStatic
+    fun bindSmallImageFromUrlFromMine(imageView: ImageView, imageUrl: String?) {
+        imageUrl?.let {
+            Glide.with(imageView)
+                .load(StringUtils.getSmallImageFromMine(it))
+                .thumbnail(Glide.with(imageView).load(R.drawable.gif_preloader))
+                .error(R.drawable.im_no_image)
+                .into(imageView)
+        }
+    }
+
+    @BindingAdapter("bindSmallImageAvatar", "bindGender")
+    @JvmStatic
+    fun bindSmallImageAvatarFromUrl(imageView: ImageView, imageUrl: String?, gender: Int?) {
+        gender?.let { genderValue ->
+            if (genderValue == 0) {
+                imageUrl?.let {
+                    Glide.with(imageView)
+                        .load(StringUtils.getSmallImageFromMine(it))
+                        .thumbnail(Glide.with(imageView).load(R.drawable.ic_profile_male))
+                        .error(R.drawable.ic_profile_male)
+                        .into(imageView)
+                }
+            } else {
+                imageUrl?.let {
+                    Glide.with(imageView)
+                        .load(StringUtils.getSmallImageFromMine(it))
+                        .thumbnail(Glide.with(imageView).load(R.drawable.ic_profile_female))
+                        .error(R.drawable.ic_profile_female)
+                        .into(imageView)
+                }
+            }
+        }
+    }
+
 //    @BindingAdapter("blurImage")
 //    @JvmStatic
 //    fun setBlurImage(imageView: ImageView?) {
@@ -130,6 +187,18 @@ object BindingUtils : BaseAdapter.OnItemClickListener {
 //                .onto()
 //        }
 //    }
+
+    @BindingAdapter("bindImageCancel")
+    @JvmStatic
+    fun bindImageCancel(imageView: ImageView, userId: Long) {
+        val it = SharedPreference(imageView.context).getValueLong(Constants.PREF_ID_USER, 0)
+
+        if (it != 0.toLong() && it == userId) {
+            imageView.visibility = View.VISIBLE
+        } else {
+            imageView.visibility = View.GONE
+        }
+    }
 
     @BindingAdapter("bindRating")
     @JvmStatic
@@ -170,21 +239,65 @@ object BindingUtils : BaseAdapter.OnItemClickListener {
     @BindingAdapter("bindDate")
     @JvmStatic
     fun formatDate(textView: TextView, date: String?) {
+        if (date.isNullOrBlank()) {
+            textView.text = date
+            return
+        }
         val inputFormat = SimpleDateFormat("yyyy-MM-dd")
         val outputFormat = SimpleDateFormat("dd-MM-yyyy")
-        date?.let {
-            val dateOuput: Date = inputFormat.parse(it)
-            val outputFormatString = outputFormat.format(dateOuput)
-            textView.text = outputFormatString
+        date.let {
+            val dateOuput: Date? = inputFormat.parse(it)
+            dateOuput?.let { date ->
+                val outputFormatString = outputFormat.format(date)
+                textView.text = outputFormatString
+            }
+        }
+    }
+
+    @BindingAdapter("bindDateTime")
+    @JvmStatic
+    fun formatDateTime(textView: TextView, date: String?) {
+        if (date.isNullOrBlank()) {
+            textView.text = date
+            return
+        }
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val outputFormat = SimpleDateFormat("ss:mm:HH dd-MM-yyyy")
+        date.let {
+            val dateOuput: Date? = inputFormat.parse(it)
+            dateOuput?.let { date ->
+
+                val outputFormatString = outputFormat.format(date)
+                textView.text = DateUtils.getRelativeTimeSpanString(
+                    dateOuput.time,
+                    System.currentTimeMillis(),
+                    0L,
+                    DateUtils.FORMAT_ABBREV_ALL
+                )
+            }
         }
     }
 
     @BindingAdapter("bindGender")
     @JvmStatic
-    fun formatGender(textView: TextView, gender : Int?){
+    fun formatGender(textView: TextView, gender: Int?) {
         gender?.let {
-            if (it == 0) textView.text = textView.context.getString(R.string.cast_detail_text_female)
+            if (it == 0) textView.text =
+                textView.context.getString(R.string.cast_detail_text_female)
             if (it == 2) textView.text = textView.context.getString(R.string.cast_detail_text_male)
+        }
+    }
+
+    @BindingAdapter("bindTextViewVisibility")
+    @JvmStatic
+    fun textViewVisibility(textView: TextView, text: String?) {
+        text?.let {
+            if (it.isEmpty()) {
+                textView.visibility = View.GONE
+            } else {
+                textView.visibility = View.VISIBLE
+                textView.text = text
+            }
         }
     }
 }

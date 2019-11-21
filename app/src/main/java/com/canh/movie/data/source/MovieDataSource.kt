@@ -4,6 +4,7 @@ import com.canh.movie.coroutines.CoroutinesResult
 import com.canh.movie.data.model.*
 import com.canh.movie.data.model.response.GenresResponse
 import com.canh.movie.data.model.response.MovieResponse
+import com.canh.movie.data.model.response.ReviewResponse
 
 interface MovieDataSource {
 
@@ -54,5 +55,16 @@ interface MovieDataSource {
             companyId: Int
         ): CoroutinesResult<Company>
 
+        suspend fun searchMovies(
+            query: String,
+            language: String,
+            page: Int
+        ): CoroutinesResult<MovieResponse>
+
+        suspend fun getMovieReviews(
+            movieId: Int,
+            language: String,
+            page: Int
+        ): CoroutinesResult<ReviewResponse>
     }
 }

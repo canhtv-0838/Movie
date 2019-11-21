@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="item"
+            type="com.canh.movie.data.model.SharedPost" />
+
+        <variable
+            name="listener"
+            type="com.canh.movie.ui.main.timeline.TimelineListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:cardElevation="@dimen/dp_8"
+        android:background="?attr/colorSurface">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/dp_4">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvImageUser"
+                android:layout_width="wrap_content"
+                app:cardElevation="@dimen/dp_8"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> listener.onUserClick(item.idUser)}"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="?attr/colorSurface"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageUser"
+                    android:layout_width="@dimen/dp_64"
+                    android:layout_height="@dimen/dp_64"
+                    android:scaleType="centerCrop"
+                    app:bindSmallImageFromMine="@{item.profilePathUser}"
+                    tools:src="@drawable/ic_profile_male" />
+            </com.google.android.material.card.MaterialCardView>>
+
+            <TextView
+                android:id="@+id/textUsername"
+                style="?android:textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:onClick="@{() -> listener.onUserClick(item.idUser)}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cvImageUser"
+                app:layout_constraintTop_toTopOf="@id/cvImageUser"
+                android:text="@{item.fullnameUser}"
+                tools:text="Nguyen Van A" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:elevation="@dimen/dp_8"
+                android:src="@drawable/ic_world"
+                android:tint="@color/color_primary"
+                android:outlineProvider="none"
+                app:layout_constraintBottom_toBottomOf="@+id/textTime"
+                app:layout_constraintStart_toStartOf="@+id/textUsername"
+                app:layout_constraintTop_toTopOf="@+id/textTime" />
+
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:bindDateTime="@{item.postTime}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@id/textUsername"
+                tools:text="01:12 02/11/2019" />
+
+            <TextView
+                android:id="@+id/textContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:scrollbars="vertical"
+                android:textColor="?android:attr/textColorPrimary"
+                app:bindTextViewVisibility="@{item.content}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvImageUser"
+                tools:text="The Avengers: End game, Infinity war, meow meow" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                app:cardElevation="@dimen/dp_8"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:onClick="@{() -> listener.onMovieClick(item.idMovie, item.titleMovie)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textContent">
+                <LinearLayout
+                    android:id="@+id/layoutMovieInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageMoviePosterPath"
+                        android:layout_width="@dimen/dp_110"
+                        android:layout_height="@dimen/dp_160"
+                        app:bindSmallImage="@{item.posterPathMovie}"
+                        tools:src="@color/color_primary" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textMovieTitle"
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{item.titleMovie}"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textMovieOverview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{item.overviewMovie}"
+                            android:layout_marginTop="@dimen/dp_8"
+                            android:ellipsize="end"
+                            android:maxLines="7" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -10,7 +10,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class MainViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
+class MainViewModel(
+    private val movieRepository: MovieRepository
+) : BaseViewModel() {
     private val language = Locale.getDefault().language
 
     private val _genresResponse = MutableLiveData<GenresResponse>()

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Movie</string>
-    <string name="error_connect" translatable="false">Network not available</string>
-<!--    main_activity-->
-    <string name="title_search" translatable="false">Search</string>
+    <string name="error_connect">Network not available</string>
+    <!--    main_activity-->
+    <string name="title_search">Search</string>
     <string name="title_dark_theme" translatable="false">Dark Theme</string>
     <string name="title_filter" translatable="false">Filter</string>
-<!--    home_fragment-->
+    <!--    home_fragment-->
     <string name="title_now_playing">Now playing</string>
     <string name="title_popular">Popular</string>
     <string name="title_upcoming">Upcoming</string>
@@ -15,25 +15,78 @@
     <string name="title_favorite" translatable="false">Favorite</string>
     <string name="title_version" translatable="false">Version: </string>
     <string name="title_build_time" translatable="false">Build: </string>
-    <string name="title_trailer" translatable="false">Trailer</string>
-    <string name="title_casting" translatable="false">Cast</string>
-    <string name="title_producer" translatable="false">Producer</string>
+    <string name="title_trailer">Trailer</string>
+    <string name="title_casting">Cast</string>
+    <string name="title_producer">Producer</string>
 
-<!--    movie_detail-->
-    <string name="title_movie_play" translatable="false">Watch Movie</string>
-    <string name="movie_detail_overview_label" translatable="false">Overview</string>
-    <string name="movie_detail_runtime_unit" translatable="false">minutes</string>
-    <string name="movie_detail_text_in" translatable="false">In</string>
+    <!--    movie_detail-->
+    <string name="title_movie_play">Watch Movie</string>
+    <string name="movie_detail_overview_label">Overview</string>
+    <string name="movie_detail_runtime_unit">minutes</string>
+    <string name="movie_detail_text_in">In</string>
+    <string name="movie_detail_title_information">Information</string>
+    <string name="movie_detail_title_trailer" translatable="false">Trailer</string>
+    <string name="movie_detail_title_reviews">Reviews</string>
+    <string name="movie_detail_title_cast" translatable="false">Cast</string>
+    <string name="movie_detail_title_producer">Producer</string>
+    <string name="cast_detail_title_information">Information</string>
 
     <!--    cast_detail-->
-    <string name="cast_detail_text_female" translatable="false">Female</string>
-    <string name="cast_detail_text_male" translatable="false">Male</string>
-    <string name="cast_detail_text_name" translatable="false">Name:</string>
-    <string name="cast_detail_text_gender" translatable="false">Gender:</string>
-    <string name="cast_detail_text_birthday" translatable="false">Birthday:</string>
-    <string name="cast_detail_text_place_of_birth" translatable="false">Place of birth:</string>
-    <string name="cast_detail_text_department" translatable="false">Department</string>
-    <string name="cast_detail_text_popularity" translatable="false">Popularity:</string>
-    <string name="cast_detail_text_biography" translatable="false">Biography:</string>
+    <string name="cast_detail_text_female">Female</string>
+    <string name="cast_detail_text_male">Male</string>
+    <string name="cast_detail_text_name">Name:</string>
+    <string name="cast_detail_text_gender">Gender:</string>
+    <string name="cast_detail_text_birthday">Birthday:</string>
+    <string name="cast_detail_text_place_of_birth">Place of birth:</string>
+    <string name="cast_detail_text_department">Department</string>
+    <string name="cast_detail_text_popularity">Popularity:</string>
+    <string name="cast_detail_text_biography">Biography:</string>
+    <string name="cast_detail_title_movies">Movies</string>
+
+    <!--    search_activity-->
+    <string name="search_hint_search">Search...</string>
+
+    <!--    login_fragment-->
+    <string name="login_text_skip" translatable="false"><u>Skip</u></string>
+
+    <!--    layout_menu-->
+    <string name="menu_login">Login</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_timeline">Timeline</string>
+    <string name="menu_logout">Logout</string>
+
+    <!--    dialog_login-->
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_title_login">LOGIN</string>
+    <string name="login_button_text_login">LOGIN</string>
+    <string name="login_button_text_register">REGISTER</string>
+
+    <!--    dialog_register-->
+    <string name="register_title_register">REGISTER</string>
+    <string name="register_button_text_login">LOGIN</string>
+    <string name="register_button_text_register">REGISTER</string>
+    <string name="register_hint_fullname">Fullname</string>
+    <string name="register_hint_birthday">Birthday</string>
+    <string name="register_hint_place_of_birth">Place of birth</string>
+    <string name="register_hint_username">Username</string>
+    <string name="register_hint_email">Email</string>
+    <string name="register_hint_password">Password</string>
+    <string name="register_text_gender_female">Female</string>
+    <string name="register_text_gender_male">Male</string>
+    <!--    share_post-->
+    <string name="share_post_hint_your_comment">Your comment… (maximum 1000 characters)</string>
+    <string name="share_post_button_share">Share now</string>
+    <string name="share_post_title_share_movie">SHARE MOVIE</string>
+    <!--    profile-->
+    <string name="profile_alert_delete_post">Do you want to delete this post?</string>
+    <string name="profile_alert_positive_button">Delete</string>
+    <string name="profile_alert_negative_button">Cancel</string>
+    <!--    main-->
+    <string name="main_alert_logout">Do you want to logout?</string>
+    <string name="main_alert_logout_positive_button">Yes</string>
+    <string name="main_alert_logout_negative_button">No</string>
+
 
 </resources>

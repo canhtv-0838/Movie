@@ -3,6 +3,7 @@ package com.canh.movie.ui.movie_detail
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
@@ -11,17 +12,25 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import com.canh.movie.R
 import com.canh.movie.data.model.Movie
+import com.canh.movie.data.model.User
 import com.canh.movie.databinding.ActivityMovieDetailBinding
 import com.canh.movie.ui.base.BaseActivity
+import com.canh.movie.ui.main.login.LoginDialogFragment
 import com.canh.movie.ui.movie_detail.cast.CastFragment
 import com.canh.movie.ui.movie_detail.information.InformationFragment
 import com.canh.movie.ui.movie_detail.producer.ProducerFragment
+import com.canh.movie.ui.movie_detail.review.ReviewFragment
+import com.canh.movie.ui.movie_detail.sharing.SharePostDialogFragment
 import com.canh.movie.ui.movie_detail.trailer.TrailerFragment
+import com.canh.movie.utils.Constants
+import com.canh.movie.utils.SharedPreference
+import com.canh.movie.utils.log
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetailViewModel>(),
-    MovieTrailerListener {
+    MovieTrailerListener,
+    LoginDialogFragment.LoginListener {
 
     private lateinit var youtubeFragment: YoutubeFragment
     private lateinit var pagerAdapter: MovieDetailPagerAdapter
@@ -53,7 +62,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
         viewModel.movie.observe(this, Observer {
             it?.let {
                 initPagerAdapter(it)
-                if (it.videoResult.videos.isNotEmpty()){
+                if (it.videoResult.videos.isNotEmpty()) {
                     createTrailer(it.videoResult.videos[0].key)
                 }
             }
@@ -85,10 +94,35 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.menu_watch_movie -> {
-            //todo
+            watchMovie()
             true
         }
+
+        R.id.menu_share_movie -> {
+            SharedPreference(this).getValueBoolean(Constants.PREF_LOGGED_IN, false).let {
+                if (it) {
+                    viewModel.movie.observe(this, Observer { movie ->
+                        movie?.let { mv ->
+                            SharePostDialogFragment.newInstance(
+                                mv.id,
+                                mv.title,
+                                mv.posterPath!!,
+                                mv.overview!!
+                            ).show(supportFragmentManager, SharePostDialogFragment.TAG)
+                        }
+                    })
+                } else {
+                    LoginDialogFragment.newInstance()
+                        .show(supportFragmentManager, LoginDialogFragment.TAG)
+                }
+                true
+            }
+        }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    override fun onLoginSuccess(user: User) {
+        log("logged in")
     }
 
     override fun playTrailer(trailerKey: String) {
@@ -102,9 +136,10 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
     }
 
     private fun initPagerAdapter(movie: Movie) {
-        pagerAdapter = MovieDetailPagerAdapter(supportFragmentManager)
+        pagerAdapter = MovieDetailPagerAdapter(supportFragmentManager, this)
         pagerAdapter.addFragments(InformationFragment.newInstance(movie))
         pagerAdapter.addFragments(TrailerFragment.newInstance(movie.videoResult))
+        pagerAdapter.addFragments(ReviewFragment.newInstance(movie.id))
         pagerAdapter.addFragments(CastFragment.newInstance(movie.credits.casts))
         pagerAdapter.addFragments(ProducerFragment.newInstance(movie.productionCompanies))
         movieDetailViewPager?.adapter = pagerAdapter
@@ -131,6 +166,21 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
     private fun setBackDropView() {
         movieDetailToolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
         movieDetailToolBar.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    private fun watchMovie() {
+        intent?.getStringExtra(EXTRA_MOVIE_TITLE)?.let {
+            val urlSearch = "https://video123movies.com/watch/${convertSpacetoDash(it)}.html"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlSearch))
+            startActivity(intent)
+        }
+    }
+
+    private fun convertSpacetoDash(url: String): String {
+        return url
+            .replace(" ", "-", true)
+            .replace(":", "")
+            .replace(".", "")
     }
 
     companion object {
