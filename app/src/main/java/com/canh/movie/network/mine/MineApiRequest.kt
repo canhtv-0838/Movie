@@ -8,7 +8,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-const val MINE_DB_BASE_URL = "http://192.168.0.73:80/movie_db/"
+const val MINE_DB_BASE_URL = "https://trvcanh197.000webhostapp.com/moviedb/"
 
 const val RESULT_CODE_SUCCESS = 0
 const val RESULT_CODE_FAILED = 1
