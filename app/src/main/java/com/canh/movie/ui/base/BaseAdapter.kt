@@ -33,7 +33,6 @@ class BaseAdapter<T> constructor(private val layoutResource: Int) :
 
     fun setItems(items: List<T>) {
         this.items = items
-        notifyDataSetChanged()
     }
 
     fun setListener(onItemClickListener: OnItemClickListener){

@@ -14,20 +14,24 @@ import java.util.*
 
 class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
     private val language = Locale.getDefault().language
-    private var pageLoading = 1
+    private var pageLoadingByCategory = 1
+    private var pageLoadingByGenres = 1
 
     private val _movies = MutableLiveData<List<Movie>>()
 
     val movies: LiveData<List<Movie>> = _movies
     var isAllLoadedObservable = ObservableBoolean(false)
 
+    var temp : MutableList<Movie> = emptyList<Movie>().toMutableList()
     override fun onCreate() {
     }
 
     fun getMoviesByCategoryType(@CategoryQuery categoryQuery: String) = launch(Dispatchers.IO) {
-        movieRepository.getMoviesByCategory(categoryQuery, language, pageLoading).getData(
+        movieRepository.getMoviesByCategory(categoryQuery, language, pageLoadingByCategory).getData(
             onSuccess = {
-                _movies.postValue(it.results)
+                temp.addAll(it.results)
+                _movies.postValue(temp)
+                pageLoadingByCategory++
                 isAllLoadedObservable.set(true)
             },
             onFailed = {
@@ -38,7 +42,7 @@ class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewMo
     }
 
     fun getMoviesByGenres(genresId: Int) = launch(Dispatchers.IO) {
-        movieRepository.getMoviesByGenres(genresId, language, pageLoading).getData(
+        movieRepository.getMoviesByGenres(genresId, language, pageLoadingByGenres).getData(
             onSuccess = {
                 _movies.postValue(it.results)
                 isAllLoadedObservable.set(true)

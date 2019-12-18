@@ -40,18 +40,17 @@ class RegisterDialogFragment :
                 when (it) {
                     viewModel.REGISTER_FAILED -> {
                         registerProgressBar.visibility = View.GONE
-                        Toast.makeText(
-                            activity!!,
-                            "Register failed. Try it again",
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
                     viewModel.REGISTER_SUCCESS -> {
                         goToDialogLogin(true)
-                        Toast.makeText(activity!!, "Register successfully", Toast.LENGTH_LONG)
-                            .show()
-
                     }
+                }
+            }
+        })
+        viewModel.resultMessage.observe(this, Observer {
+            it?.let {
+                if (it.isNotBlank()){
+                    Toast.makeText(activity!!, it, Toast.LENGTH_LONG).show()
                 }
             }
         })

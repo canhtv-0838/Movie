@@ -1,6 +1,9 @@
 package com.canh.movie.ui.main.movies
 
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.canh.movie.R
 import com.canh.movie.data.model.CategoryQuery
 import com.canh.movie.data.model.Genres
@@ -10,6 +13,7 @@ import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.base.BaseFragment
 import com.canh.movie.ui.main.MainActivity
 import com.canh.movie.ui.movie_detail.MovieDetailActivity
+import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
@@ -23,6 +27,22 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
         movieListener = this
         setToolbarTitleByCategory()
         setToolbarTitleByGenres()
+
+        val manager  = homeRecyclerMovies.layoutManager as LinearLayoutManager
+        val firstItem = manager.findFirstVisibleItemPosition()
+        val firstItemView : View? = manager.findViewByPosition(firstItem)
+        val topOffset = firstItemView?.top
+
+        homeRecyclerMovies.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (!recyclerView.canScrollVertically(1)) {
+                        getMoviesByCategory()
+                    }
+                }
+            }
+        })
     }
 
     override fun onStart() {

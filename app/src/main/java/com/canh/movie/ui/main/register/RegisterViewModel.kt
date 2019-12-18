@@ -3,6 +3,7 @@ package com.canh.movie.ui.main.register
 import androidx.lifecycle.MutableLiveData
 import com.canh.movie.coroutines.getData
 import com.canh.movie.data.repository.MineRepository
+import com.canh.movie.network.mine.ERROR_CODE_EMAIL_REGISTERED
 import com.canh.movie.network.mine.ERROR_CODE_SUCCESS
 import com.canh.movie.network.mine.RESULT_CODE_SUCCESS
 import com.canh.movie.ui.base.BaseViewModel
@@ -15,6 +16,7 @@ class RegisterViewModel(private val mineRepository: MineRepository) : BaseViewMo
     val REGISTER_FAILED = "REGISTER_FAILED"
 
     var registerStatus = MutableLiveData<String>()
+    var resultMessage = MutableLiveData<String>()
 
     override fun onCreate() {
 
@@ -43,9 +45,15 @@ class RegisterViewModel(private val mineRepository: MineRepository) : BaseViewMo
             onSuccess = {
                 if (it.resultCode == RESULT_CODE_SUCCESS) {
                     when (it.errorCode) {
-                        ERROR_CODE_SUCCESS -> registerStatus.postValue(REGISTER_SUCCESS)
-                        else -> {
-                        }//todo
+                        ERROR_CODE_SUCCESS -> {
+                            registerStatus.postValue(REGISTER_SUCCESS)
+                            resultMessage.postValue("Register successfully")
+                        }
+                        ERROR_CODE_EMAIL_REGISTERED -> {
+                            registerStatus.postValue(REGISTER_FAILED)
+                            resultMessage.postValue("Email has been registered. Try with another.")
+                        }
+                        else -> {}//todo
                     }
                 }
             },

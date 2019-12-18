@@ -14,6 +14,7 @@ const val RESULT_CODE_SUCCESS = 0
 const val RESULT_CODE_FAILED = 1
 
 const val ERROR_CODE_SUCCESS = 0
+const val ERROR_CODE_EMAIL_REGISTERED = 1
 
 interface MineApiRequest {
     @FormUrlEncoded

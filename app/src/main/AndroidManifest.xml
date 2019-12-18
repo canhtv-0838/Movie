@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.canh.movie">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,16 +15,18 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme.DayNight">
-<!--        <activity android:name=".ui.landing.LandingActivity">-->
-        <activity android:name=".ui.main.MainActivity" >
+        android:theme="@style/AppTheme.DayNight"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="m">
+        <activity android:name=".ui.landing.LandingActivity">
+<!--        <activity android:name=".ui.main.MainActivity" >-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".ui.main.MainActivity" />-->
+        <activity android:name=".ui.main.MainActivity" />
         <activity android:name="com.canh.movie.ui.movie_detail.MovieDetailActivity"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait"/>

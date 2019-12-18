@@ -35,7 +35,7 @@ class BackDropView @JvmOverloads internal constructor(
         updateIcon(view)
         val translateY = if (SharedPreference(context).getValueBoolean(Constants.PREF_LOGGED_IN,false)
         ) {
-            (height - (3*height)/4)
+            (height - (5*height)/7)
         } else {
             (height - (15*height)/16)
         }
@@ -67,7 +67,7 @@ class BackDropView @JvmOverloads internal constructor(
         animatorSet.removeAllListeners()
         animatorSet.end()
         animatorSet.cancel()
-        val translateY = height - (3*height)/4
+        val translateY = height - (5*height)/7
         val animator = ObjectAnimator.ofFloat(sheet, "translationY", (if (backdropShown) translateY else 0).toFloat())
         animator.duration = 500
         if (interpolator != null) {
