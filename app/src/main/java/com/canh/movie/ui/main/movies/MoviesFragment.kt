@@ -1,76 +1,63 @@
 package com.canh.movie.ui.main.movies
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.canh.movie.R
 import com.canh.movie.data.model.CategoryQuery
 import com.canh.movie.data.model.Genres
 import com.canh.movie.data.model.Movie
 import com.canh.movie.databinding.FragmentMoviesBinding
+import com.canh.movie.ui.base.BaseAdapter
 import com.canh.movie.ui.base.BaseAdapterItemClickListener
 import com.canh.movie.ui.base.BaseFragment
 import com.canh.movie.ui.main.MainActivity
 import com.canh.movie.ui.movie_detail.MovieDetailActivity
-import com.canh.movie.utils.log
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
     BaseAdapterItemClickListener<Movie> {
 
+    private lateinit var adapter: BaseAdapter<Movie>
+
     override val viewModel: MoviesViewModel by viewModel()
 
     override fun getLayoutResource(): Int = R.layout.fragment_movies
 
     override fun initComponents() {
-        movieListener = this
         setToolbarTitleByCategory()
         setToolbarTitleByGenres()
+        initAdapter()
     }
 
     override fun observeData() {
         super.observeData()
-        getMoviesByCategory(1)
-        getMoviesByGenres(1)
+        getMoviesByCategory()
+        getMoviesByGenres()
 
-        viewModel.pageLoadingByCategory.observe(this, Observer {
-            it?.let { currentPage ->
-                onPageChange(currentPage, viewModel.totalPageLoadingByCategory.value!!)
+        viewModel.movies.observe(this, Observer {
+            it?.let {
+                if (adapter.itemCount == 0) {
+                    adapter.setItems(it)
+                } else {
+                    adapter.addItems(it)
+                }
             }
         })
-
-        viewModel.pageLoadingByGenre.observe(this, Observer {
-            it?.let { currentPage ->
-                onPageChange(currentPage, viewModel.totalPageLoadingByGenre.value!!)
-            }
-        })
-
 
         homeRecyclerMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     if (!recyclerView.canScrollVertically(1)) {
-                        movieLinearPage.visibility = View.VISIBLE
-                    } else {
-                        movieLinearPage.visibility = View.GONE
+                        getMoviesByCategory()
+                        getMoviesByGenres()
+                        viewModel.isAllLoadedObservable.set(false)
                     }
                 }
             }
         })
-
-        movieButtonPrev.setOnClickListener {
-            getMoviesByCategory(Integer.parseInt(movieTextPage.text.toString()) - 1)
-            getMoviesByGenres(Integer.parseInt(movieTextPage.text.toString()) - 1)
-        }
-
-        movieButtonNext.setOnClickListener {
-            getMoviesByCategory(Integer.parseInt(movieTextPage.text.toString()) + 1)
-            getMoviesByGenres(Integer.parseInt(movieTextPage.text.toString()) + 1)
-        }
     }
 
     override fun onItemClick(item: Movie) {
@@ -83,9 +70,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
         )
     }
 
-    private fun getMoviesByCategory(page: Int) {
+    private fun getMoviesByCategory() {
         val categoryQuery = arguments?.getString(ARGUMENT_CATEGORY_QUERY)
-        categoryQuery?.let { viewModel.getMoviesByCategoryType(it, page) }
+        categoryQuery?.let { viewModel.getMoviesByCategoryType(it) }
     }
 
     private fun setToolbarTitleByCategory() {
@@ -95,9 +82,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
         }
     }
 
-    private fun getMoviesByGenres(page: Int) {
+    private fun getMoviesByGenres() {
         val genres: Genres? = arguments?.getParcelable(ARGUMENT_GENRES)
-        genres?.let { viewModel.getMoviesByGenres(it.id, page) }
+        genres?.let { viewModel.getMoviesByGenres(it.id) }
     }
 
     private fun setToolbarTitleByGenres() {
@@ -107,18 +94,10 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
         }
     }
 
-    private fun onPageChange(currentPage : Int, totalPage: Int){
-        movieTextPage.text = currentPage.toString()
-        if (currentPage == 1 && currentPage < totalPage) {
-            movieButtonPrev.isEnabled = false
-            movieButtonNext.isEnabled = true
-        } else if (currentPage in 2 until totalPage) {
-            movieButtonPrev.isEnabled = true
-            movieButtonNext.isEnabled = true
-        } else if (currentPage > 1 && currentPage == totalPage) {
-            movieButtonPrev.isEnabled = true
-            movieButtonNext.isEnabled = false
-        }
+    private fun initAdapter() {
+        adapter = BaseAdapter(R.layout.item_movie_movies)
+        adapter.setListener(this)
+        homeRecyclerMovies.adapter = adapter
     }
 
     companion object {
@@ -127,7 +106,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(),
         private const val ARGUMENT_GENRES = "ARGUMENT_GENRES"
 
         @JvmStatic
-        lateinit var movieListener: BaseAdapterItemClickListener<Movie>
 
         fun newInstance(
             @CategoryQuery categoryQuery: String, categoryTitle: String

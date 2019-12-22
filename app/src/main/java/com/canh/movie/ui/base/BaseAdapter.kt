@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
+import java.lang.Exception
 
 class BaseAdapter<T> constructor(private val layoutResource: Int) :
     RecyclerView.Adapter<BaseAdapter.ViewHolder<T>>() {
@@ -33,6 +34,18 @@ class BaseAdapter<T> constructor(private val layoutResource: Int) :
 
     fun setItems(items: List<T>) {
         this.items = items
+        notifyDataSetChanged()
+    }
+
+    fun addItems(items: List<T>) {
+        try {
+            val lastIndex = this.items.lastIndex
+            this.items.toMutableList().addAll(items)
+            notifyItemRangeInserted(lastIndex, itemCount)
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
+
     }
 
     fun setListener(onItemClickListener: OnItemClickListener){

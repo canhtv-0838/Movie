@@ -11,6 +11,7 @@ import com.canh.movie.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
     private val language = Locale.getDefault().language
@@ -19,22 +20,30 @@ class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewMo
 
     val movies: LiveData<List<Movie>> = _movies
     var isAllLoadedObservable = ObservableBoolean(false)
-    var pageLoadingByCategory = MutableLiveData<Int>()
-    var totalPageLoadingByCategory = MutableLiveData<Int>()
 
-    var pageLoadingByGenre = MutableLiveData<Int>()
-    var totalPageLoadingByGenre = MutableLiveData<Int>()
+    var pageLoadingByCategory = 1
+    var tempMoviesByCategory = ArrayList<Movie>()
+
+    var pageLoadingByGenre = 1
+    var tempMoviesByGenre = ArrayList<Movie>()
+
 
     override fun onCreate() {
     }
 
-    fun getMoviesByCategoryType(@CategoryQuery categoryQuery: String, page: Int) = launch(Dispatchers.IO) {
-        movieRepository.getMoviesByCategory(categoryQuery, language, page).getData(
+    fun getMoviesByCategoryType(@CategoryQuery categoryQuery: String) = launch(Dispatchers.IO) {
+        movieRepository.getMoviesByCategory(categoryQuery, language, pageLoadingByCategory).getData(
             onSuccess = {
-                totalPageLoadingByCategory.postValue(it.totalPages)
-                pageLoadingByCategory.postValue(page)
-                _movies.postValue(it.results)
-                isAllLoadedObservable.set(true)
+                if (pageLoadingByCategory < it.totalPages) {
+                    tempMoviesByCategory.addAll(it.results)
+                    _movies.postValue(tempMoviesByCategory)
+                    isAllLoadedObservable.set(true)
+                    pageLoadingByCategory++
+                } else {
+                    tempMoviesByCategory.addAll(it.results)
+                    _movies.postValue(tempMoviesByCategory)
+                    isAllLoadedObservable.set(true)
+                }
             },
             onFailed = {
                 messageNotification.postValue(it.message.toString())
@@ -43,13 +52,15 @@ class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewMo
         )
     }
 
-    fun getMoviesByGenres(genresId: Int, page: Int) = launch(Dispatchers.IO) {
-        movieRepository.getMoviesByGenres(genresId, language, page).getData(
+    fun getMoviesByGenres(genresId: Int) = launch(Dispatchers.IO) {
+        movieRepository.getMoviesByGenres(genresId, language, pageLoadingByGenre).getData(
             onSuccess = {
-                totalPageLoadingByGenre.postValue(it.totalPages)
-                pageLoadingByGenre.postValue(page)
-                _movies.postValue(it.results)
-                isAllLoadedObservable.set(true)
+                if (pageLoadingByGenre < it.totalPages) {
+                    tempMoviesByGenre.addAll(it.results)
+                    _movies.postValue(tempMoviesByGenre)
+                    isAllLoadedObservable.set(true)
+                    pageLoadingByGenre++
+                }
             },
             onFailed = {
                 messageNotification.postValue(it.message.toString())
