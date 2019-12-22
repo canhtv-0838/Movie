@@ -40,6 +40,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/movieLinearPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_margin="@dimen/dp_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movieButtonPrev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="8dp"
+                android:background="?attr/colorSurface"
+                android:elevation="@dimen/dp_8"
+                android:src="@drawable/ic_skip_previous_black_24dp"
+                android:tint="?android:attr/textColorPrimary"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/movieTextPage"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:elevation="@dimen/dp_8"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                tools:text="12" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movieButtonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="8dp"
+                android:background="?attr/colorSurface"
+                android:elevation="@dimen/dp_8"
+                android:src="@drawable/ic_skip_next_black_24dp"
+                android:tint="?android:attr/textColorPrimary"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </LinearLayout>
+
         <View
             android:id="@+id/homeViewLoading"
             android:layout_width="0dp"
@@ -64,4 +113,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>
