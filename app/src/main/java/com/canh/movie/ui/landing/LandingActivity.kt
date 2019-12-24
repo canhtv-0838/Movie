@@ -6,7 +6,6 @@ import com.canh.movie.R
 import com.canh.movie.databinding.ActivityLandingBinding
 import com.canh.movie.ui.base.BaseActivity
 import com.canh.movie.ui.landing.splash.SplashFragment
-import com.canh.movie.utils.log
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LandingActivity : BaseActivity<ActivityLandingBinding, LandingViewModel>() {
